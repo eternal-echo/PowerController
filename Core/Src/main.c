@@ -89,8 +89,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
       // set work time
       work = (uint32_t)(cmd - '0') * 1000 / 2;
       // set run period
-      htim1.Instance->ARR = (uint32_t)(cmd - '0') * 1000; // cmd S
-      debug_printf("Set period to %d ms\r\n", htim1.Instance->ARR);
+      htim1.Instance->ARR = (uint32_t)(cmd - '0') * 1000 - 1; // cmd S
+      debug_printf("Set period to %d ms\r\n", htim1.Instance->ARR + 1);
     }
   }
   HAL_UART_Receive_IT(&huart1, (uint8_t *)&cmd, 1);
