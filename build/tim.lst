@@ -1,0 +1,450 @@
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccfuNezd.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"tim.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.MX_TIM1_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	MX_TIM1_Init
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	MX_TIM1_Init:
+  25              	.LFB65:
+  26              		.file 1 "Core/Src/tim.c"
+   1:Core/Src/tim.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/tim.c **** /**
+   3:Core/Src/tim.c ****   ******************************************************************************
+   4:Core/Src/tim.c ****   * @file    tim.c
+   5:Core/Src/tim.c ****   * @brief   This file provides code for the configuration
+   6:Core/Src/tim.c ****   *          of the TIM instances.
+   7:Core/Src/tim.c ****   ******************************************************************************
+   8:Core/Src/tim.c ****   * @attention
+   9:Core/Src/tim.c ****   *
+  10:Core/Src/tim.c ****   * Copyright (c) 2022 STMicroelectronics.
+  11:Core/Src/tim.c ****   * All rights reserved.
+  12:Core/Src/tim.c ****   *
+  13:Core/Src/tim.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  14:Core/Src/tim.c ****   * in the root directory of this software component.
+  15:Core/Src/tim.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  16:Core/Src/tim.c ****   *
+  17:Core/Src/tim.c ****   ******************************************************************************
+  18:Core/Src/tim.c ****   */
+  19:Core/Src/tim.c **** /* USER CODE END Header */
+  20:Core/Src/tim.c **** /* Includes ------------------------------------------------------------------*/
+  21:Core/Src/tim.c **** #include "tim.h"
+  22:Core/Src/tim.c **** 
+  23:Core/Src/tim.c **** /* USER CODE BEGIN 0 */
+  24:Core/Src/tim.c **** 
+  25:Core/Src/tim.c **** /* USER CODE END 0 */
+  26:Core/Src/tim.c **** 
+  27:Core/Src/tim.c **** TIM_HandleTypeDef htim1;
+  28:Core/Src/tim.c **** 
+  29:Core/Src/tim.c **** /* TIM1 init function */
+  30:Core/Src/tim.c **** void MX_TIM1_Init(void)
+  31:Core/Src/tim.c **** {
+  27              		.loc 1 31 1 view -0
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccfuNezd.s 			page 2
+
+
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 24
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 00B5     		push	{lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 14, -4
+  35 0002 87B0     		sub	sp, sp, #28
+  36              	.LCFI1:
+  37              		.cfi_def_cfa_offset 32
+  32:Core/Src/tim.c **** 
+  33:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_Init 0 */
+  34:Core/Src/tim.c **** 
+  35:Core/Src/tim.c ****   /* USER CODE END TIM1_Init 0 */
+  36:Core/Src/tim.c **** 
+  37:Core/Src/tim.c ****   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  38              		.loc 1 37 3 view .LVU1
+  39              		.loc 1 37 26 is_stmt 0 view .LVU2
+  40 0004 0023     		movs	r3, #0
+  41 0006 0293     		str	r3, [sp, #8]
+  42 0008 0393     		str	r3, [sp, #12]
+  43 000a 0493     		str	r3, [sp, #16]
+  44 000c 0593     		str	r3, [sp, #20]
+  38:Core/Src/tim.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
+  45              		.loc 1 38 3 is_stmt 1 view .LVU3
+  46              		.loc 1 38 27 is_stmt 0 view .LVU4
+  47 000e 0093     		str	r3, [sp]
+  48 0010 0193     		str	r3, [sp, #4]
+  39:Core/Src/tim.c **** 
+  40:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_Init 1 */
+  41:Core/Src/tim.c **** 
+  42:Core/Src/tim.c ****   /* USER CODE END TIM1_Init 1 */
+  43:Core/Src/tim.c ****   htim1.Instance = TIM1;
+  49              		.loc 1 43 3 is_stmt 1 view .LVU5
+  50              		.loc 1 43 18 is_stmt 0 view .LVU6
+  51 0012 1748     		ldr	r0, .L9
+  52 0014 174A     		ldr	r2, .L9+4
+  53 0016 0260     		str	r2, [r0]
+  44:Core/Src/tim.c ****   htim1.Init.Prescaler = 7199;
+  54              		.loc 1 44 3 is_stmt 1 view .LVU7
+  55              		.loc 1 44 24 is_stmt 0 view .LVU8
+  56 0018 41F61F42 		movw	r2, #7199
+  57 001c 4260     		str	r2, [r0, #4]
+  45:Core/Src/tim.c ****   htim1.Init.CounterMode = TIM_COUNTERMODE_DOWN;
+  58              		.loc 1 45 3 is_stmt 1 view .LVU9
+  59              		.loc 1 45 26 is_stmt 0 view .LVU10
+  60 001e 1022     		movs	r2, #16
+  61 0020 8260     		str	r2, [r0, #8]
+  46:Core/Src/tim.c ****   htim1.Init.Period = 999;
+  62              		.loc 1 46 3 is_stmt 1 view .LVU11
+  63              		.loc 1 46 21 is_stmt 0 view .LVU12
+  64 0022 40F2E732 		movw	r2, #999
+  65 0026 C260     		str	r2, [r0, #12]
+  47:Core/Src/tim.c ****   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  66              		.loc 1 47 3 is_stmt 1 view .LVU13
+  67              		.loc 1 47 28 is_stmt 0 view .LVU14
+  68 0028 0361     		str	r3, [r0, #16]
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccfuNezd.s 			page 3
+
+
+  48:Core/Src/tim.c ****   htim1.Init.RepetitionCounter = 9;
+  69              		.loc 1 48 3 is_stmt 1 view .LVU15
+  70              		.loc 1 48 32 is_stmt 0 view .LVU16
+  71 002a 0922     		movs	r2, #9
+  72 002c 4261     		str	r2, [r0, #20]
+  49:Core/Src/tim.c ****   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  73              		.loc 1 49 3 is_stmt 1 view .LVU17
+  74              		.loc 1 49 32 is_stmt 0 view .LVU18
+  75 002e 8361     		str	r3, [r0, #24]
+  50:Core/Src/tim.c ****   if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+  76              		.loc 1 50 3 is_stmt 1 view .LVU19
+  77              		.loc 1 50 7 is_stmt 0 view .LVU20
+  78 0030 FFF7FEFF 		bl	HAL_TIM_Base_Init
+  79              	.LVL0:
+  80              		.loc 1 50 6 view .LVU21
+  81 0034 90B9     		cbnz	r0, .L6
+  82              	.L2:
+  51:Core/Src/tim.c ****   {
+  52:Core/Src/tim.c ****     Error_Handler();
+  53:Core/Src/tim.c ****   }
+  54:Core/Src/tim.c ****   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  83              		.loc 1 54 3 is_stmt 1 view .LVU22
+  84              		.loc 1 54 34 is_stmt 0 view .LVU23
+  85 0036 4FF48053 		mov	r3, #4096
+  86 003a 0293     		str	r3, [sp, #8]
+  55:Core/Src/tim.c ****   if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+  87              		.loc 1 55 3 is_stmt 1 view .LVU24
+  88              		.loc 1 55 7 is_stmt 0 view .LVU25
+  89 003c 02A9     		add	r1, sp, #8
+  90 003e 0C48     		ldr	r0, .L9
+  91 0040 FFF7FEFF 		bl	HAL_TIM_ConfigClockSource
+  92              	.LVL1:
+  93              		.loc 1 55 6 view .LVU26
+  94 0044 68B9     		cbnz	r0, .L7
+  95              	.L3:
+  56:Core/Src/tim.c ****   {
+  57:Core/Src/tim.c ****     Error_Handler();
+  58:Core/Src/tim.c ****   }
+  59:Core/Src/tim.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  96              		.loc 1 59 3 is_stmt 1 view .LVU27
+  97              		.loc 1 59 37 is_stmt 0 view .LVU28
+  98 0046 0023     		movs	r3, #0
+  99 0048 0093     		str	r3, [sp]
+  60:Core/Src/tim.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 100              		.loc 1 60 3 is_stmt 1 view .LVU29
+ 101              		.loc 1 60 33 is_stmt 0 view .LVU30
+ 102 004a 0193     		str	r3, [sp, #4]
+  61:Core/Src/tim.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+ 103              		.loc 1 61 3 is_stmt 1 view .LVU31
+ 104              		.loc 1 61 7 is_stmt 0 view .LVU32
+ 105 004c 6946     		mov	r1, sp
+ 106 004e 0848     		ldr	r0, .L9
+ 107 0050 FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
+ 108              	.LVL2:
+ 109              		.loc 1 61 6 view .LVU33
+ 110 0054 40B9     		cbnz	r0, .L8
+ 111              	.L1:
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccfuNezd.s 			page 4
+
+
+  62:Core/Src/tim.c ****   {
+  63:Core/Src/tim.c ****     Error_Handler();
+  64:Core/Src/tim.c ****   }
+  65:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_Init 2 */
+  66:Core/Src/tim.c **** 
+  67:Core/Src/tim.c ****   /* USER CODE END TIM1_Init 2 */
+  68:Core/Src/tim.c **** 
+  69:Core/Src/tim.c **** }
+ 112              		.loc 1 69 1 view .LVU34
+ 113 0056 07B0     		add	sp, sp, #28
+ 114              	.LCFI2:
+ 115              		.cfi_remember_state
+ 116              		.cfi_def_cfa_offset 4
+ 117              		@ sp needed
+ 118 0058 5DF804FB 		ldr	pc, [sp], #4
+ 119              	.L6:
+ 120              	.LCFI3:
+ 121              		.cfi_restore_state
+  52:Core/Src/tim.c ****   }
+ 122              		.loc 1 52 5 is_stmt 1 view .LVU35
+ 123 005c FFF7FEFF 		bl	Error_Handler
+ 124              	.LVL3:
+ 125 0060 E9E7     		b	.L2
+ 126              	.L7:
+  57:Core/Src/tim.c ****   }
+ 127              		.loc 1 57 5 view .LVU36
+ 128 0062 FFF7FEFF 		bl	Error_Handler
+ 129              	.LVL4:
+ 130 0066 EEE7     		b	.L3
+ 131              	.L8:
+  63:Core/Src/tim.c ****   }
+ 132              		.loc 1 63 5 view .LVU37
+ 133 0068 FFF7FEFF 		bl	Error_Handler
+ 134              	.LVL5:
+ 135              		.loc 1 69 1 is_stmt 0 view .LVU38
+ 136 006c F3E7     		b	.L1
+ 137              	.L10:
+ 138 006e 00BF     		.align	2
+ 139              	.L9:
+ 140 0070 00000000 		.word	.LANCHOR0
+ 141 0074 002C0140 		.word	1073818624
+ 142              		.cfi_endproc
+ 143              	.LFE65:
+ 145              		.section	.text.HAL_TIM_Base_MspInit,"ax",%progbits
+ 146              		.align	1
+ 147              		.global	HAL_TIM_Base_MspInit
+ 148              		.syntax unified
+ 149              		.thumb
+ 150              		.thumb_func
+ 152              	HAL_TIM_Base_MspInit:
+ 153              	.LVL6:
+ 154              	.LFB66:
+  70:Core/Src/tim.c **** 
+  71:Core/Src/tim.c **** void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
+  72:Core/Src/tim.c **** {
+ 155              		.loc 1 72 1 is_stmt 1 view -0
+ 156              		.cfi_startproc
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccfuNezd.s 			page 5
+
+
+ 157              		@ args = 0, pretend = 0, frame = 8
+ 158              		@ frame_needed = 0, uses_anonymous_args = 0
+  73:Core/Src/tim.c **** 
+  74:Core/Src/tim.c ****   if(tim_baseHandle->Instance==TIM1)
+ 159              		.loc 1 74 3 view .LVU40
+ 160              		.loc 1 74 20 is_stmt 0 view .LVU41
+ 161 0000 0268     		ldr	r2, [r0]
+ 162              		.loc 1 74 5 view .LVU42
+ 163 0002 0E4B     		ldr	r3, .L18
+ 164 0004 9A42     		cmp	r2, r3
+ 165 0006 00D0     		beq	.L17
+ 166 0008 7047     		bx	lr
+ 167              	.L17:
+  72:Core/Src/tim.c **** 
+ 168              		.loc 1 72 1 view .LVU43
+ 169 000a 00B5     		push	{lr}
+ 170              	.LCFI4:
+ 171              		.cfi_def_cfa_offset 4
+ 172              		.cfi_offset 14, -4
+ 173 000c 83B0     		sub	sp, sp, #12
+ 174              	.LCFI5:
+ 175              		.cfi_def_cfa_offset 16
+  75:Core/Src/tim.c ****   {
+  76:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspInit 0 */
+  77:Core/Src/tim.c **** 
+  78:Core/Src/tim.c ****   /* USER CODE END TIM1_MspInit 0 */
+  79:Core/Src/tim.c ****     /* TIM1 clock enable */
+  80:Core/Src/tim.c ****     __HAL_RCC_TIM1_CLK_ENABLE();
+ 176              		.loc 1 80 5 is_stmt 1 view .LVU44
+ 177              	.LBB2:
+ 178              		.loc 1 80 5 view .LVU45
+ 179              		.loc 1 80 5 view .LVU46
+ 180 000e 03F56443 		add	r3, r3, #58368
+ 181 0012 9A69     		ldr	r2, [r3, #24]
+ 182 0014 42F40062 		orr	r2, r2, #2048
+ 183 0018 9A61     		str	r2, [r3, #24]
+ 184              		.loc 1 80 5 view .LVU47
+ 185 001a 9B69     		ldr	r3, [r3, #24]
+ 186 001c 03F40063 		and	r3, r3, #2048
+ 187 0020 0193     		str	r3, [sp, #4]
+ 188              		.loc 1 80 5 view .LVU48
+ 189 0022 019B     		ldr	r3, [sp, #4]
+ 190              	.LBE2:
+ 191              		.loc 1 80 5 view .LVU49
+  81:Core/Src/tim.c **** 
+  82:Core/Src/tim.c ****     /* TIM1 interrupt Init */
+  83:Core/Src/tim.c ****     HAL_NVIC_SetPriority(TIM1_UP_IRQn, 0, 0);
+ 192              		.loc 1 83 5 view .LVU50
+ 193 0024 0022     		movs	r2, #0
+ 194 0026 1146     		mov	r1, r2
+ 195 0028 1920     		movs	r0, #25
+ 196              	.LVL7:
+ 197              		.loc 1 83 5 is_stmt 0 view .LVU51
+ 198 002a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 199              	.LVL8:
+  84:Core/Src/tim.c ****     HAL_NVIC_EnableIRQ(TIM1_UP_IRQn);
+ 200              		.loc 1 84 5 is_stmt 1 view .LVU52
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccfuNezd.s 			page 6
+
+
+ 201 002e 1920     		movs	r0, #25
+ 202 0030 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 203              	.LVL9:
+  85:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspInit 1 */
+  86:Core/Src/tim.c **** 
+  87:Core/Src/tim.c ****   /* USER CODE END TIM1_MspInit 1 */
+  88:Core/Src/tim.c ****   }
+  89:Core/Src/tim.c **** }
+ 204              		.loc 1 89 1 is_stmt 0 view .LVU53
+ 205 0034 03B0     		add	sp, sp, #12
+ 206              	.LCFI6:
+ 207              		.cfi_def_cfa_offset 4
+ 208              		@ sp needed
+ 209 0036 5DF804FB 		ldr	pc, [sp], #4
+ 210              	.L19:
+ 211 003a 00BF     		.align	2
+ 212              	.L18:
+ 213 003c 002C0140 		.word	1073818624
+ 214              		.cfi_endproc
+ 215              	.LFE66:
+ 217              		.section	.text.HAL_TIM_Base_MspDeInit,"ax",%progbits
+ 218              		.align	1
+ 219              		.global	HAL_TIM_Base_MspDeInit
+ 220              		.syntax unified
+ 221              		.thumb
+ 222              		.thumb_func
+ 224              	HAL_TIM_Base_MspDeInit:
+ 225              	.LVL10:
+ 226              	.LFB67:
+  90:Core/Src/tim.c **** 
+  91:Core/Src/tim.c **** void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
+  92:Core/Src/tim.c **** {
+ 227              		.loc 1 92 1 is_stmt 1 view -0
+ 228              		.cfi_startproc
+ 229              		@ args = 0, pretend = 0, frame = 0
+ 230              		@ frame_needed = 0, uses_anonymous_args = 0
+ 231              		.loc 1 92 1 is_stmt 0 view .LVU55
+ 232 0000 08B5     		push	{r3, lr}
+ 233              	.LCFI7:
+ 234              		.cfi_def_cfa_offset 8
+ 235              		.cfi_offset 3, -8
+ 236              		.cfi_offset 14, -4
+  93:Core/Src/tim.c **** 
+  94:Core/Src/tim.c ****   if(tim_baseHandle->Instance==TIM1)
+ 237              		.loc 1 94 3 is_stmt 1 view .LVU56
+ 238              		.loc 1 94 20 is_stmt 0 view .LVU57
+ 239 0002 0268     		ldr	r2, [r0]
+ 240              		.loc 1 94 5 view .LVU58
+ 241 0004 064B     		ldr	r3, .L24
+ 242 0006 9A42     		cmp	r2, r3
+ 243 0008 00D0     		beq	.L23
+ 244              	.LVL11:
+ 245              	.L20:
+  95:Core/Src/tim.c ****   {
+  96:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspDeInit 0 */
+  97:Core/Src/tim.c **** 
+  98:Core/Src/tim.c ****   /* USER CODE END TIM1_MspDeInit 0 */
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccfuNezd.s 			page 7
+
+
+  99:Core/Src/tim.c ****     /* Peripheral clock disable */
+ 100:Core/Src/tim.c ****     __HAL_RCC_TIM1_CLK_DISABLE();
+ 101:Core/Src/tim.c **** 
+ 102:Core/Src/tim.c ****     /* TIM1 interrupt Deinit */
+ 103:Core/Src/tim.c ****     HAL_NVIC_DisableIRQ(TIM1_UP_IRQn);
+ 104:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspDeInit 1 */
+ 105:Core/Src/tim.c **** 
+ 106:Core/Src/tim.c ****   /* USER CODE END TIM1_MspDeInit 1 */
+ 107:Core/Src/tim.c ****   }
+ 108:Core/Src/tim.c **** }
+ 246              		.loc 1 108 1 view .LVU59
+ 247 000a 08BD     		pop	{r3, pc}
+ 248              	.LVL12:
+ 249              	.L23:
+ 100:Core/Src/tim.c **** 
+ 250              		.loc 1 100 5 is_stmt 1 view .LVU60
+ 251 000c 054A     		ldr	r2, .L24+4
+ 252 000e 9369     		ldr	r3, [r2, #24]
+ 253 0010 23F40063 		bic	r3, r3, #2048
+ 254 0014 9361     		str	r3, [r2, #24]
+ 103:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspDeInit 1 */
+ 255              		.loc 1 103 5 view .LVU61
+ 256 0016 1920     		movs	r0, #25
+ 257              	.LVL13:
+ 103:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspDeInit 1 */
+ 258              		.loc 1 103 5 is_stmt 0 view .LVU62
+ 259 0018 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 260              	.LVL14:
+ 261              		.loc 1 108 1 view .LVU63
+ 262 001c F5E7     		b	.L20
+ 263              	.L25:
+ 264 001e 00BF     		.align	2
+ 265              	.L24:
+ 266 0020 002C0140 		.word	1073818624
+ 267 0024 00100240 		.word	1073876992
+ 268              		.cfi_endproc
+ 269              	.LFE67:
+ 271              		.global	htim1
+ 272              		.section	.bss.htim1,"aw",%nobits
+ 273              		.align	2
+ 274              		.set	.LANCHOR0,. + 0
+ 277              	htim1:
+ 278 0000 00000000 		.space	72
+ 278      00000000 
+ 278      00000000 
+ 278      00000000 
+ 278      00000000 
+ 279              		.text
+ 280              	.Letext0:
+ 281              		.file 2 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 282              		.file 3 "c:\\users\\henry\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\machin
+ 283              		.file 4 "c:\\users\\henry\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\sys\\_
+ 284              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 285              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 286              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h"
+ 287              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h"
+ 288              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h"
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccfuNezd.s 			page 8
+
+
+ 289              		.file 10 "Core/Inc/tim.h"
+ 290              		.file 11 "Core/Inc/main.h"
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccfuNezd.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 tim.c
+C:\Users\henry\AppData\Local\Temp\ccfuNezd.s:18     .text.MX_TIM1_Init:00000000 $t
+C:\Users\henry\AppData\Local\Temp\ccfuNezd.s:24     .text.MX_TIM1_Init:00000000 MX_TIM1_Init
+C:\Users\henry\AppData\Local\Temp\ccfuNezd.s:140    .text.MX_TIM1_Init:00000070 $d
+C:\Users\henry\AppData\Local\Temp\ccfuNezd.s:146    .text.HAL_TIM_Base_MspInit:00000000 $t
+C:\Users\henry\AppData\Local\Temp\ccfuNezd.s:152    .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
+C:\Users\henry\AppData\Local\Temp\ccfuNezd.s:213    .text.HAL_TIM_Base_MspInit:0000003c $d
+C:\Users\henry\AppData\Local\Temp\ccfuNezd.s:218    .text.HAL_TIM_Base_MspDeInit:00000000 $t
+C:\Users\henry\AppData\Local\Temp\ccfuNezd.s:224    .text.HAL_TIM_Base_MspDeInit:00000000 HAL_TIM_Base_MspDeInit
+C:\Users\henry\AppData\Local\Temp\ccfuNezd.s:266    .text.HAL_TIM_Base_MspDeInit:00000020 $d
+C:\Users\henry\AppData\Local\Temp\ccfuNezd.s:277    .bss.htim1:00000000 htim1
+C:\Users\henry\AppData\Local\Temp\ccfuNezd.s:273    .bss.htim1:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_TIM_Base_Init
+HAL_TIM_ConfigClockSource
+HAL_TIMEx_MasterConfigSynchronization
+Error_Handler
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
+HAL_NVIC_DisableIRQ

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.ino": "cpp",
+        "*.map": "mapfile",
+        "stdarg.h": "c"
+    }
+}

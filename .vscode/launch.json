@@ -1,0 +1,26 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/${workspaceFolderBasename}.elf",
+            "name": "Debug with OpenOCD",
+            "request": "launch",
+            "type": "cortex-debug",
+            "device":"STM32F103C8",        //使用J-link GDB Server时必须；其他GBD Server时可选（有可能帮助自动选择SVD文件）。支持的设备见 https://www.segger.com/downloads/supported-devices.php
+            "svdFile": "./STM32F103.svd", //C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.productdb.debug_2.0.400.202211151459\resources\cmsis\STMicroelectronics_CMSIS_SVD
+            "servertype": "openocd",
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32f1x.cfg"
+            ],
+            "preLaunchTask": "build",
+            "searchDir": [],
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "parsed",
+        },
+    ]
+}
