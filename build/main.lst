@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 1
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,14 +58,14 @@ ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 1
   29:Core/Src/main.c **** 
   30:Core/Src/main.c **** /* Private typedef -----------------------------------------------------------*/
   31:Core/Src/main.c **** /* USER CODE BEGIN PTD */
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 2
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 2
 
 
   32:Core/Src/main.c **** enum system_state
   33:Core/Src/main.c **** {
   34:Core/Src/main.c ****   STATE_IDLE = 0,
   35:Core/Src/main.c ****   STATE_WORK,
-  36:Core/Src/main.c ****   STATE_STOP
+  36:Core/Src/main.c ****   STATE_PAUSE
   37:Core/Src/main.c **** };
   38:Core/Src/main.c **** typedef enum system_state system_state_t;
   39:Core/Src/main.c **** /* USER CODE END PTD */
@@ -112,425 +112,529 @@ ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 1
   34              		.loc 1 73 11 is_stmt 0 view .LVU2
   35 0000 0268     		ldr	r2, [r0]
   36              		.loc 1 73 6 view .LVU3
-  37 0002 044B     		ldr	r3, .L4
+  37 0002 064B     		ldr	r3, .L4
   38 0004 9A42     		cmp	r2, r3
   39 0006 00D0     		beq	.L3
   40              	.L1:
   74:Core/Src/main.c ****   {
-  75:Core/Src/main.c ****     state = STATE_WORK;
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 3
+  75:Core/Src/main.c ****     if(state == STATE_IDLE)
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 3
 
 
-  76:Core/Src/main.c ****   }
-  77:Core/Src/main.c **** }
-  41              		.loc 1 77 1 view .LVU4
+  76:Core/Src/main.c ****     {
+  77:Core/Src/main.c ****       state = STATE_WORK;
+  78:Core/Src/main.c ****     }
+  79:Core/Src/main.c ****   }
+  80:Core/Src/main.c **** }
+  41              		.loc 1 80 1 view .LVU4
   42 0008 7047     		bx	lr
   43              	.L3:
-  75:Core/Src/main.c ****   }
+  75:Core/Src/main.c ****     {
   44              		.loc 1 75 5 is_stmt 1 view .LVU5
-  75:Core/Src/main.c ****   }
-  45              		.loc 1 75 11 is_stmt 0 view .LVU6
-  46 000a 034B     		ldr	r3, .L4+4
-  47 000c 0122     		movs	r2, #1
-  48 000e 1A70     		strb	r2, [r3]
-  49              		.loc 1 77 1 view .LVU7
-  50 0010 FAE7     		b	.L1
-  51              	.L5:
-  52 0012 00BF     		.align	2
-  53              	.L4:
-  54 0014 002C0140 		.word	1073818624
-  55 0018 00000000 		.word	.LANCHOR0
-  56              		.cfi_endproc
-  57              	.LFE65:
-  59              		.section	.rodata.HAL_UART_RxCpltCallback.str1.4,"aMS",%progbits,1
-  60              		.align	2
-  61              	.LC0:
-  62 0000 53657420 		.ascii	"Set period to %d ms\015\012\000"
-  62      70657269 
-  62      6F642074 
-  62      6F202564 
-  62      206D730D 
-  63              		.section	.text.HAL_UART_RxCpltCallback,"ax",%progbits
-  64              		.align	1
-  65              		.global	HAL_UART_RxCpltCallback
-  66              		.syntax unified
-  67              		.thumb
-  68              		.thumb_func
-  70              	HAL_UART_RxCpltCallback:
-  71              	.LVL1:
-  72              	.LFB66:
-  78:Core/Src/main.c **** /**
-  79:Core/Src/main.c ****   * @brief  Rx Callback when new data is received on the UART.
-  80:Core/Src/main.c ****   * @param  huart: Uart handle receiving the data.
-  81:Core/Src/main.c ****   * @retval None.
-  82:Core/Src/main.c ****   */
-  83:Core/Src/main.c **** void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-  84:Core/Src/main.c **** {
-  73              		.loc 1 84 1 is_stmt 1 view -0
-  74              		.cfi_startproc
-  75              		@ args = 0, pretend = 0, frame = 0
-  76              		@ frame_needed = 0, uses_anonymous_args = 0
-  77              		.loc 1 84 1 is_stmt 0 view .LVU9
-  78 0000 08B5     		push	{r3, lr}
-  79              	.LCFI0:
-  80              		.cfi_def_cfa_offset 8
-  81              		.cfi_offset 3, -8
-  82              		.cfi_offset 14, -4
-  85:Core/Src/main.c ****   if (huart->Instance == USART1)
-  83              		.loc 1 85 3 is_stmt 1 view .LVU10
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 4
+  75:Core/Src/main.c ****     {
+  45              		.loc 1 75 14 is_stmt 0 view .LVU6
+  46 000a 054B     		ldr	r3, .L4+4
+  47 000c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  75:Core/Src/main.c ****     {
+  48              		.loc 1 75 7 view .LVU7
+  49 000e 002B     		cmp	r3, #0
+  50 0010 FAD1     		bne	.L1
+  77:Core/Src/main.c ****     }
+  51              		.loc 1 77 7 is_stmt 1 view .LVU8
+  77:Core/Src/main.c ****     }
+  52              		.loc 1 77 13 is_stmt 0 view .LVU9
+  53 0012 034B     		ldr	r3, .L4+4
+  54 0014 0122     		movs	r2, #1
+  55 0016 1A70     		strb	r2, [r3]
+  56              		.loc 1 80 1 view .LVU10
+  57 0018 F6E7     		b	.L1
+  58              	.L5:
+  59 001a 00BF     		.align	2
+  60              	.L4:
+  61 001c 002C0140 		.word	1073818624
+  62 0020 00000000 		.word	.LANCHOR0
+  63              		.cfi_endproc
+  64              	.LFE65:
+  66              		.section	.rodata.HAL_UART_RxCpltCallback.str1.4,"aMS",%progbits,1
+  67              		.align	2
+  68              	.LC0:
+  69 0000 53657420 		.ascii	"Set period to %d ms\015\012\000"
+  69      70657269 
+  69      6F642074 
+  69      6F202564 
+  69      206D730D 
+  70              		.section	.text.HAL_UART_RxCpltCallback,"ax",%progbits
+  71              		.align	1
+  72              		.global	HAL_UART_RxCpltCallback
+  73              		.syntax unified
+  74              		.thumb
+  75              		.thumb_func
+  77              	HAL_UART_RxCpltCallback:
+  78              	.LVL1:
+  79              	.LFB66:
+  81:Core/Src/main.c **** /**
+  82:Core/Src/main.c ****   * @brief  Rx Callback when new data is received on the UART.
+  83:Core/Src/main.c ****   * @param  huart: Uart handle receiving the data.
+  84:Core/Src/main.c ****   * @retval None.
+  85:Core/Src/main.c ****   */
+  86:Core/Src/main.c **** void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 4
 
 
-  84              		.loc 1 85 12 is_stmt 0 view .LVU11
-  85 0002 0268     		ldr	r2, [r0]
-  86              		.loc 1 85 6 view .LVU12
-  87 0004 0F4B     		ldr	r3, .L10
-  88 0006 9A42     		cmp	r2, r3
-  89 0008 05D0     		beq	.L9
-  90              	.LVL2:
-  91              	.L7:
-  86:Core/Src/main.c ****   {
-  87:Core/Src/main.c ****     if (cmd > '0' && cmd <= '9')
-  88:Core/Src/main.c ****     {
-  89:Core/Src/main.c ****       // set work time
-  90:Core/Src/main.c ****       work = (uint32_t)(cmd - '0') * 1000 / 2;
-  91:Core/Src/main.c ****       // set run period
-  92:Core/Src/main.c ****       htim1.Instance->ARR = (uint32_t)(cmd - '0') * 1000; // cmd S
-  93:Core/Src/main.c ****       debug_printf("Set period to %d ms\r\n", htim1.Instance->ARR);
-  94:Core/Src/main.c ****     }
-  95:Core/Src/main.c ****   }
-  96:Core/Src/main.c ****   HAL_UART_Receive_IT(&huart1, (uint8_t *)&cmd, 1);
-  92              		.loc 1 96 3 is_stmt 1 view .LVU13
-  93 000a 0122     		movs	r2, #1
-  94 000c 0E49     		ldr	r1, .L10+4
-  95 000e 0F48     		ldr	r0, .L10+8
-  96 0010 FFF7FEFF 		bl	HAL_UART_Receive_IT
-  97              	.LVL3:
-  97:Core/Src/main.c **** }
-  98              		.loc 1 97 1 is_stmt 0 view .LVU14
-  99 0014 08BD     		pop	{r3, pc}
- 100              	.LVL4:
- 101              	.L9:
-  87:Core/Src/main.c ****     {
- 102              		.loc 1 87 5 is_stmt 1 view .LVU15
-  87:Core/Src/main.c ****     {
- 103              		.loc 1 87 19 is_stmt 0 view .LVU16
- 104 0016 0C4B     		ldr	r3, .L10+4
- 105 0018 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
- 106 001a A2F13103 		sub	r3, r2, #49
- 107 001e DBB2     		uxtb	r3, r3
-  87:Core/Src/main.c ****     {
- 108              		.loc 1 87 8 view .LVU17
- 109 0020 082B     		cmp	r3, #8
- 110 0022 F2D8     		bhi	.L7
-  90:Core/Src/main.c ****       // set run period
- 111              		.loc 1 90 7 is_stmt 1 view .LVU18
-  90:Core/Src/main.c ****       // set run period
- 112              		.loc 1 90 29 is_stmt 0 view .LVU19
- 113 0024 303A     		subs	r2, r2, #48
-  90:Core/Src/main.c ****       // set run period
- 114              		.loc 1 90 36 view .LVU20
- 115 0026 4FF47A73 		mov	r3, #1000
- 116 002a 03FB02F2 		mul	r2, r3, r2
-  90:Core/Src/main.c ****       // set run period
- 117              		.loc 1 90 43 view .LVU21
- 118 002e 5108     		lsrs	r1, r2, #1
-  90:Core/Src/main.c ****       // set run period
- 119              		.loc 1 90 12 view .LVU22
- 120 0030 074B     		ldr	r3, .L10+12
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 5
+  87:Core/Src/main.c **** {
+  80              		.loc 1 87 1 is_stmt 1 view -0
+  81              		.cfi_startproc
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84              		.loc 1 87 1 is_stmt 0 view .LVU12
+  85 0000 08B5     		push	{r3, lr}
+  86              	.LCFI0:
+  87              		.cfi_def_cfa_offset 8
+  88              		.cfi_offset 3, -8
+  89              		.cfi_offset 14, -4
+  88:Core/Src/main.c ****   if (huart->Instance == USART1)
+  90              		.loc 1 88 3 is_stmt 1 view .LVU13
+  91              		.loc 1 88 12 is_stmt 0 view .LVU14
+  92 0002 0268     		ldr	r2, [r0]
+  93              		.loc 1 88 6 view .LVU15
+  94 0004 1A4B     		ldr	r3, .L14
+  95 0006 9A42     		cmp	r2, r3
+  96 0008 05D0     		beq	.L11
+  97              	.LVL2:
+  98              	.L7:
+  89:Core/Src/main.c ****   {
+  90:Core/Src/main.c ****     if (cmd > '0' && cmd <= '9')
+  91:Core/Src/main.c ****     {
+  92:Core/Src/main.c ****       // set work time
+  93:Core/Src/main.c ****       work = (uint32_t)(cmd - '0') * 1000 / 2;
+  94:Core/Src/main.c ****       // set run period
+  95:Core/Src/main.c ****       htim1.Instance->ARR = (uint32_t)(cmd - '0') * 1000 - 1; // cmd S
+  96:Core/Src/main.c ****       debug_printf("Set period to %d ms\r\n", htim1.Instance->ARR + 1);
+  97:Core/Src/main.c ****     }
+  98:Core/Src/main.c ****     else if (cmd == 's')
+  99:Core/Src/main.c ****     {
+ 100:Core/Src/main.c ****       // start work
+ 101:Core/Src/main.c ****       if(state == STATE_PAUSE)
+ 102:Core/Src/main.c ****       {
+ 103:Core/Src/main.c ****         state = STATE_WORK;
+ 104:Core/Src/main.c ****       }
+ 105:Core/Src/main.c ****     }
+ 106:Core/Src/main.c ****     else if (cmd == 'p')
+ 107:Core/Src/main.c ****     {
+ 108:Core/Src/main.c ****       // stop work
+ 109:Core/Src/main.c ****       if(state == STATE_WORK || state == STATE_IDLE)
+ 110:Core/Src/main.c ****       {
+ 111:Core/Src/main.c ****         state = STATE_PAUSE;
+ 112:Core/Src/main.c ****       }
+ 113:Core/Src/main.c ****     }
+ 114:Core/Src/main.c ****   }
+ 115:Core/Src/main.c ****   HAL_UART_Receive_IT(&huart1, (uint8_t *)&cmd, 1);
+  99              		.loc 1 115 3 is_stmt 1 view .LVU16
+ 100 000a 0122     		movs	r2, #1
+ 101 000c 1949     		ldr	r1, .L14+4
+ 102 000e 1A48     		ldr	r0, .L14+8
+ 103 0010 FFF7FEFF 		bl	HAL_UART_Receive_IT
+ 104              	.LVL3:
+ 116:Core/Src/main.c **** }
+ 105              		.loc 1 116 1 is_stmt 0 view .LVU17
+ 106 0014 08BD     		pop	{r3, pc}
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 5
 
 
- 121 0032 1960     		str	r1, [r3]
-  92:Core/Src/main.c ****       debug_printf("Set period to %d ms\r\n", htim1.Instance->ARR);
- 122              		.loc 1 92 7 is_stmt 1 view .LVU23
-  92:Core/Src/main.c ****       debug_printf("Set period to %d ms\r\n", htim1.Instance->ARR);
- 123              		.loc 1 92 12 is_stmt 0 view .LVU24
- 124 0034 074B     		ldr	r3, .L10+16
- 125 0036 1B68     		ldr	r3, [r3]
-  92:Core/Src/main.c ****       debug_printf("Set period to %d ms\r\n", htim1.Instance->ARR);
- 126              		.loc 1 92 27 view .LVU25
- 127 0038 DA62     		str	r2, [r3, #44]
-  93:Core/Src/main.c ****     }
- 128              		.loc 1 93 7 is_stmt 1 view .LVU26
-  93:Core/Src/main.c ****     }
- 129              		.loc 1 93 61 is_stmt 0 view .LVU27
- 130 003a D96A     		ldr	r1, [r3, #44]
-  93:Core/Src/main.c ****     }
- 131              		.loc 1 93 7 view .LVU28
- 132 003c 0648     		ldr	r0, .L10+20
- 133              	.LVL5:
-  93:Core/Src/main.c ****     }
- 134              		.loc 1 93 7 view .LVU29
- 135 003e FFF7FEFF 		bl	debug_printf
- 136              	.LVL6:
- 137 0042 E2E7     		b	.L7
- 138              	.L11:
- 139              		.align	2
- 140              	.L10:
- 141 0044 00380140 		.word	1073821696
- 142 0048 00000000 		.word	.LANCHOR1
- 143 004c 00000000 		.word	huart1
- 144 0050 00000000 		.word	.LANCHOR2
- 145 0054 00000000 		.word	htim1
- 146 0058 00000000 		.word	.LC0
- 147              		.cfi_endproc
- 148              	.LFE66:
- 150              		.section	.rodata.do_work.str1.4,"aMS",%progbits,1
- 151              		.align	2
- 152              	.LC1:
- 153 0000 53746172 		.ascii	"Start work for %d ms\015\012\000"
- 153      7420776F 
- 153      726B2066 
- 153      6F722025 
- 153      64206D73 
- 154 0017 00       		.align	2
- 155              	.LC2:
- 156 0018 576F726B 		.ascii	"Work done\015\012\000"
- 156      20646F6E 
- 156      650D0A00 
- 157              		.section	.text.do_work,"ax",%progbits
- 158              		.align	1
- 159              		.global	do_work
- 160              		.syntax unified
- 161              		.thumb
- 162              		.thumb_func
- 164              	do_work:
- 165              	.LVL7:
- 166              	.LFB67:
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 6
+ 107              	.LVL4:
+ 108              	.L11:
+  90:Core/Src/main.c ****     {
+ 109              		.loc 1 90 5 is_stmt 1 view .LVU18
+  90:Core/Src/main.c ****     {
+ 110              		.loc 1 90 19 is_stmt 0 view .LVU19
+ 111 0016 174B     		ldr	r3, .L14+4
+ 112 0018 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 113 001a A3F13102 		sub	r2, r3, #49
+ 114 001e D2B2     		uxtb	r2, r2
+  90:Core/Src/main.c ****     {
+ 115              		.loc 1 90 8 view .LVU20
+ 116 0020 082A     		cmp	r2, #8
+ 117 0022 0BD9     		bls	.L12
+  98:Core/Src/main.c ****     {
+ 118              		.loc 1 98 10 is_stmt 1 view .LVU21
+  98:Core/Src/main.c ****     {
+ 119              		.loc 1 98 13 is_stmt 0 view .LVU22
+ 120 0024 732B     		cmp	r3, #115
+ 121 0026 1BD0     		beq	.L13
+ 106:Core/Src/main.c ****     {
+ 122              		.loc 1 106 10 is_stmt 1 view .LVU23
+ 106:Core/Src/main.c ****     {
+ 123              		.loc 1 106 13 is_stmt 0 view .LVU24
+ 124 0028 702B     		cmp	r3, #112
+ 125 002a EED1     		bne	.L7
+ 109:Core/Src/main.c ****       {
+ 126              		.loc 1 109 7 is_stmt 1 view .LVU25
+ 109:Core/Src/main.c ****       {
+ 127              		.loc 1 109 30 is_stmt 0 view .LVU26
+ 128 002c 134B     		ldr	r3, .L14+12
+ 129 002e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 109:Core/Src/main.c ****       {
+ 130              		.loc 1 109 9 view .LVU27
+ 131 0030 012B     		cmp	r3, #1
+ 132 0032 EAD8     		bhi	.L7
+ 111:Core/Src/main.c ****       }
+ 133              		.loc 1 111 9 is_stmt 1 view .LVU28
+ 111:Core/Src/main.c ****       }
+ 134              		.loc 1 111 15 is_stmt 0 view .LVU29
+ 135 0034 114B     		ldr	r3, .L14+12
+ 136 0036 0222     		movs	r2, #2
+ 137 0038 1A70     		strb	r2, [r3]
+ 138 003a E6E7     		b	.L7
+ 139              	.L12:
+  93:Core/Src/main.c ****       // set run period
+ 140              		.loc 1 93 7 is_stmt 1 view .LVU30
+  93:Core/Src/main.c ****       // set run period
+ 141              		.loc 1 93 29 is_stmt 0 view .LVU31
+ 142 003c 303B     		subs	r3, r3, #48
+  93:Core/Src/main.c ****       // set run period
+ 143              		.loc 1 93 36 view .LVU32
+ 144 003e 4FF47A72 		mov	r2, #1000
+ 145 0042 02FB03F3 		mul	r3, r2, r3
+  93:Core/Src/main.c ****       // set run period
+ 146              		.loc 1 93 43 view .LVU33
+ 147 0046 5908     		lsrs	r1, r3, #1
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 6
 
 
-  98:Core/Src/main.c **** 
-  99:Core/Src/main.c **** int8_t do_work(uint32_t w)
- 100:Core/Src/main.c **** {
- 167              		.loc 1 100 1 is_stmt 1 view -0
- 168              		.cfi_startproc
- 169              		@ args = 0, pretend = 0, frame = 0
- 170              		@ frame_needed = 0, uses_anonymous_args = 0
- 171              		.loc 1 100 1 is_stmt 0 view .LVU31
- 172 0000 10B5     		push	{r4, lr}
- 173              	.LCFI1:
- 174              		.cfi_def_cfa_offset 8
- 175              		.cfi_offset 4, -8
- 176              		.cfi_offset 14, -4
- 177 0002 0446     		mov	r4, r0
- 101:Core/Src/main.c ****   debug_printf("Start work for %d ms\r\n", w);
- 178              		.loc 1 101 3 is_stmt 1 view .LVU32
- 179 0004 0146     		mov	r1, r0
- 180 0006 0548     		ldr	r0, .L14
- 181              	.LVL8:
- 182              		.loc 1 101 3 is_stmt 0 view .LVU33
- 183 0008 FFF7FEFF 		bl	debug_printf
- 184              	.LVL9:
- 102:Core/Src/main.c ****   HAL_Delay(w);
- 185              		.loc 1 102 3 is_stmt 1 view .LVU34
- 186 000c 2046     		mov	r0, r4
- 187 000e FFF7FEFF 		bl	HAL_Delay
- 188              	.LVL10:
- 103:Core/Src/main.c ****   debug_printf("Work done\r\n");
- 189              		.loc 1 103 3 view .LVU35
- 190 0012 0348     		ldr	r0, .L14+4
- 191 0014 FFF7FEFF 		bl	debug_printf
- 192              	.LVL11:
- 104:Core/Src/main.c ****   return 0;
- 193              		.loc 1 104 3 view .LVU36
- 105:Core/Src/main.c **** }
- 194              		.loc 1 105 1 is_stmt 0 view .LVU37
- 195 0018 0020     		movs	r0, #0
- 196 001a 10BD     		pop	{r4, pc}
- 197              	.LVL12:
- 198              	.L15:
- 199              		.loc 1 105 1 view .LVU38
- 200              		.align	2
- 201              	.L14:
- 202 001c 00000000 		.word	.LC1
- 203 0020 18000000 		.word	.LC2
- 204              		.cfi_endproc
- 205              	.LFE67:
- 207              		.section	.rodata.Error_Handler.str1.4,"aMS",%progbits,1
- 208              		.align	2
- 209              	.LC3:
- 210 0000 5B457272 		.ascii	"[Error]\015\012\000"
- 210      6F725D0D 
- 210      0A00
- 211              		.section	.text.Error_Handler,"ax",%progbits
- 212              		.align	1
- 213              		.global	Error_Handler
- 214              		.syntax unified
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 7
+  93:Core/Src/main.c ****       // set run period
+ 148              		.loc 1 93 12 view .LVU34
+ 149 0048 0D4A     		ldr	r2, .L14+16
+ 150 004a 1160     		str	r1, [r2]
+  95:Core/Src/main.c ****       debug_printf("Set period to %d ms\r\n", htim1.Instance->ARR + 1);
+ 151              		.loc 1 95 7 is_stmt 1 view .LVU35
+  95:Core/Src/main.c ****       debug_printf("Set period to %d ms\r\n", htim1.Instance->ARR + 1);
+ 152              		.loc 1 95 12 is_stmt 0 view .LVU36
+ 153 004c 0D4A     		ldr	r2, .L14+20
+ 154 004e 1268     		ldr	r2, [r2]
+  95:Core/Src/main.c ****       debug_printf("Set period to %d ms\r\n", htim1.Instance->ARR + 1);
+ 155              		.loc 1 95 58 view .LVU37
+ 156 0050 013B     		subs	r3, r3, #1
+  95:Core/Src/main.c ****       debug_printf("Set period to %d ms\r\n", htim1.Instance->ARR + 1);
+ 157              		.loc 1 95 27 view .LVU38
+ 158 0052 D362     		str	r3, [r2, #44]
+  96:Core/Src/main.c ****     }
+ 159              		.loc 1 96 7 is_stmt 1 view .LVU39
+  96:Core/Src/main.c ****     }
+ 160              		.loc 1 96 61 is_stmt 0 view .LVU40
+ 161 0054 D16A     		ldr	r1, [r2, #44]
+  96:Core/Src/main.c ****     }
+ 162              		.loc 1 96 7 view .LVU41
+ 163 0056 0131     		adds	r1, r1, #1
+ 164 0058 0B48     		ldr	r0, .L14+24
+ 165              	.LVL5:
+  96:Core/Src/main.c ****     }
+ 166              		.loc 1 96 7 view .LVU42
+ 167 005a FFF7FEFF 		bl	debug_printf
+ 168              	.LVL6:
+ 169 005e D4E7     		b	.L7
+ 170              	.LVL7:
+ 171              	.L13:
+ 101:Core/Src/main.c ****       {
+ 172              		.loc 1 101 7 is_stmt 1 view .LVU43
+ 101:Core/Src/main.c ****       {
+ 173              		.loc 1 101 16 is_stmt 0 view .LVU44
+ 174 0060 064B     		ldr	r3, .L14+12
+ 175 0062 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 101:Core/Src/main.c ****       {
+ 176              		.loc 1 101 9 view .LVU45
+ 177 0064 022B     		cmp	r3, #2
+ 178 0066 D0D1     		bne	.L7
+ 103:Core/Src/main.c ****       }
+ 179              		.loc 1 103 9 is_stmt 1 view .LVU46
+ 103:Core/Src/main.c ****       }
+ 180              		.loc 1 103 15 is_stmt 0 view .LVU47
+ 181 0068 044B     		ldr	r3, .L14+12
+ 182 006a 0122     		movs	r2, #1
+ 183 006c 1A70     		strb	r2, [r3]
+ 184 006e CCE7     		b	.L7
+ 185              	.L15:
+ 186              		.align	2
+ 187              	.L14:
+ 188 0070 00380140 		.word	1073821696
+ 189 0074 00000000 		.word	.LANCHOR1
+ 190 0078 00000000 		.word	huart1
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 7
 
 
- 215              		.thumb
- 216              		.thumb_func
- 218              	Error_Handler:
- 219              	.LFB70:
- 106:Core/Src/main.c **** /* USER CODE END 0 */
- 107:Core/Src/main.c **** 
- 108:Core/Src/main.c **** /**
- 109:Core/Src/main.c ****   * @brief  The application entry point.
- 110:Core/Src/main.c ****   * @retval int
- 111:Core/Src/main.c ****   */
- 112:Core/Src/main.c **** int main(void)
- 113:Core/Src/main.c **** {
- 114:Core/Src/main.c ****   /* USER CODE BEGIN 1 */
- 115:Core/Src/main.c ****   int8_t result = 0;
- 116:Core/Src/main.c ****   /* USER CODE END 1 */
+ 191 007c 00000000 		.word	.LANCHOR0
+ 192 0080 00000000 		.word	.LANCHOR2
+ 193 0084 00000000 		.word	htim1
+ 194 0088 00000000 		.word	.LC0
+ 195              		.cfi_endproc
+ 196              	.LFE66:
+ 198              		.section	.rodata.do_work.str1.4,"aMS",%progbits,1
+ 199              		.align	2
+ 200              	.LC1:
+ 201 0000 53746172 		.ascii	"Start work for %d ms\015\012\000"
+ 201      7420776F 
+ 201      726B2066 
+ 201      6F722025 
+ 201      64206D73 
+ 202 0017 00       		.align	2
+ 203              	.LC2:
+ 204 0018 576F726B 		.ascii	"Work done\015\012\000"
+ 204      20646F6E 
+ 204      650D0A00 
+ 205              		.section	.text.do_work,"ax",%progbits
+ 206              		.align	1
+ 207              		.global	do_work
+ 208              		.syntax unified
+ 209              		.thumb
+ 210              		.thumb_func
+ 212              	do_work:
+ 213              	.LVL8:
+ 214              	.LFB67:
  117:Core/Src/main.c **** 
- 118:Core/Src/main.c ****   /* MCU Configuration--------------------------------------------------------*/
- 119:Core/Src/main.c **** 
- 120:Core/Src/main.c ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
- 121:Core/Src/main.c ****   HAL_Init();
- 122:Core/Src/main.c **** 
- 123:Core/Src/main.c ****   /* USER CODE BEGIN Init */
- 124:Core/Src/main.c **** 
- 125:Core/Src/main.c ****   /* USER CODE END Init */
+ 118:Core/Src/main.c **** int8_t do_work(uint32_t w)
+ 119:Core/Src/main.c **** {
+ 215              		.loc 1 119 1 is_stmt 1 view -0
+ 216              		.cfi_startproc
+ 217              		@ args = 0, pretend = 0, frame = 0
+ 218              		@ frame_needed = 0, uses_anonymous_args = 0
+ 219              		.loc 1 119 1 is_stmt 0 view .LVU49
+ 220 0000 10B5     		push	{r4, lr}
+ 221              	.LCFI1:
+ 222              		.cfi_def_cfa_offset 8
+ 223              		.cfi_offset 4, -8
+ 224              		.cfi_offset 14, -4
+ 225 0002 0446     		mov	r4, r0
+ 120:Core/Src/main.c ****   debug_printf("Start work for %d ms\r\n", w);
+ 226              		.loc 1 120 3 is_stmt 1 view .LVU50
+ 227 0004 0146     		mov	r1, r0
+ 228 0006 0548     		ldr	r0, .L18
+ 229              	.LVL9:
+ 230              		.loc 1 120 3 is_stmt 0 view .LVU51
+ 231 0008 FFF7FEFF 		bl	debug_printf
+ 232              	.LVL10:
+ 121:Core/Src/main.c ****   HAL_Delay(w);
+ 233              		.loc 1 121 3 is_stmt 1 view .LVU52
+ 234 000c 2046     		mov	r0, r4
+ 235 000e FFF7FEFF 		bl	HAL_Delay
+ 236              	.LVL11:
+ 122:Core/Src/main.c ****   debug_printf("Work done\r\n");
+ 237              		.loc 1 122 3 view .LVU53
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 8
+
+
+ 238 0012 0348     		ldr	r0, .L18+4
+ 239 0014 FFF7FEFF 		bl	debug_printf
+ 240              	.LVL12:
+ 123:Core/Src/main.c ****   return 0;
+ 241              		.loc 1 123 3 view .LVU54
+ 124:Core/Src/main.c **** }
+ 242              		.loc 1 124 1 is_stmt 0 view .LVU55
+ 243 0018 0020     		movs	r0, #0
+ 244 001a 10BD     		pop	{r4, pc}
+ 245              	.LVL13:
+ 246              	.L19:
+ 247              		.loc 1 124 1 view .LVU56
+ 248              		.align	2
+ 249              	.L18:
+ 250 001c 00000000 		.word	.LC1
+ 251 0020 18000000 		.word	.LC2
+ 252              		.cfi_endproc
+ 253              	.LFE67:
+ 255              		.section	.rodata.Error_Handler.str1.4,"aMS",%progbits,1
+ 256              		.align	2
+ 257              	.LC3:
+ 258 0000 5B457272 		.ascii	"[Error]\015\012\000"
+ 258      6F725D0D 
+ 258      0A00
+ 259              		.section	.text.Error_Handler,"ax",%progbits
+ 260              		.align	1
+ 261              		.global	Error_Handler
+ 262              		.syntax unified
+ 263              		.thumb
+ 264              		.thumb_func
+ 266              	Error_Handler:
+ 267              	.LFB70:
+ 125:Core/Src/main.c **** /* USER CODE END 0 */
  126:Core/Src/main.c **** 
- 127:Core/Src/main.c ****   /* Configure the system clock */
- 128:Core/Src/main.c ****   SystemClock_Config();
- 129:Core/Src/main.c **** 
- 130:Core/Src/main.c ****   /* USER CODE BEGIN SysInit */
- 131:Core/Src/main.c **** 
- 132:Core/Src/main.c ****   /* USER CODE END SysInit */
- 133:Core/Src/main.c **** 
- 134:Core/Src/main.c ****   /* Initialize all configured peripherals */
- 135:Core/Src/main.c ****   MX_GPIO_Init();
- 136:Core/Src/main.c ****   MX_USART1_UART_Init();
- 137:Core/Src/main.c ****   MX_TIM1_Init();
- 138:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
- 139:Core/Src/main.c **** 
- 140:Core/Src/main.c ****   /* USER CODE END 2 */
+ 127:Core/Src/main.c **** /**
+ 128:Core/Src/main.c ****   * @brief  The application entry point.
+ 129:Core/Src/main.c ****   * @retval int
+ 130:Core/Src/main.c ****   */
+ 131:Core/Src/main.c **** int main(void)
+ 132:Core/Src/main.c **** {
+ 133:Core/Src/main.c ****   /* USER CODE BEGIN 1 */
+ 134:Core/Src/main.c ****   int8_t result = 0;
+ 135:Core/Src/main.c ****   /* USER CODE END 1 */
+ 136:Core/Src/main.c **** 
+ 137:Core/Src/main.c ****   /* MCU Configuration--------------------------------------------------------*/
+ 138:Core/Src/main.c **** 
+ 139:Core/Src/main.c ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+ 140:Core/Src/main.c ****   HAL_Init();
  141:Core/Src/main.c **** 
- 142:Core/Src/main.c ****   /* Infinite loop */
- 143:Core/Src/main.c ****   /* USER CODE BEGIN WHILE */
- 144:Core/Src/main.c ****   debug_printf("Power controller test\r\n");
- 145:Core/Src/main.c ****   if(HAL_TIM_Base_Start_IT(&htim1) != HAL_OK)
- 146:Core/Src/main.c ****   {
- 147:Core/Src/main.c ****     debug_printf("Start timer failed\r\n");
- 148:Core/Src/main.c ****     Error_Handler();
- 149:Core/Src/main.c ****   }
- 150:Core/Src/main.c ****   if(HAL_UART_Receive_IT(&huart1, (uint8_t *)&cmd, 1) != HAL_OK)
- 151:Core/Src/main.c ****   {
- 152:Core/Src/main.c ****     debug_printf("Start uart failed\r\n");
- 153:Core/Src/main.c ****     Error_Handler();
- 154:Core/Src/main.c ****   }
- 155:Core/Src/main.c ****   while (1)
- 156:Core/Src/main.c ****   {
- 157:Core/Src/main.c ****     /* USER CODE END WHILE */
+ 142:Core/Src/main.c ****   /* USER CODE BEGIN Init */
+ 143:Core/Src/main.c **** 
+ 144:Core/Src/main.c ****   /* USER CODE END Init */
+ 145:Core/Src/main.c **** 
+ 146:Core/Src/main.c ****   /* Configure the system clock */
+ 147:Core/Src/main.c ****   SystemClock_Config();
+ 148:Core/Src/main.c **** 
+ 149:Core/Src/main.c ****   /* USER CODE BEGIN SysInit */
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 9
+
+
+ 150:Core/Src/main.c **** 
+ 151:Core/Src/main.c ****   /* USER CODE END SysInit */
+ 152:Core/Src/main.c **** 
+ 153:Core/Src/main.c ****   /* Initialize all configured peripherals */
+ 154:Core/Src/main.c ****   MX_GPIO_Init();
+ 155:Core/Src/main.c ****   MX_USART1_UART_Init();
+ 156:Core/Src/main.c ****   MX_TIM1_Init();
+ 157:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
  158:Core/Src/main.c **** 
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 8
+ 159:Core/Src/main.c ****   /* USER CODE END 2 */
+ 160:Core/Src/main.c **** 
+ 161:Core/Src/main.c ****   /* Infinite loop */
+ 162:Core/Src/main.c ****   /* USER CODE BEGIN WHILE */
+ 163:Core/Src/main.c ****   debug_printf("Power controller test\r\n");
+ 164:Core/Src/main.c ****   if(HAL_TIM_Base_Start_IT(&htim1) != HAL_OK)
+ 165:Core/Src/main.c ****   {
+ 166:Core/Src/main.c ****     debug_printf("Start timer failed\r\n");
+ 167:Core/Src/main.c ****     Error_Handler();
+ 168:Core/Src/main.c ****   }
+ 169:Core/Src/main.c ****   if(HAL_UART_Receive_IT(&huart1, (uint8_t *)&cmd, 1) != HAL_OK)
+ 170:Core/Src/main.c ****   {
+ 171:Core/Src/main.c ****     debug_printf("Start uart failed\r\n");
+ 172:Core/Src/main.c ****     Error_Handler();
+ 173:Core/Src/main.c ****   }
+ 174:Core/Src/main.c ****   while (1)
+ 175:Core/Src/main.c ****   {
+ 176:Core/Src/main.c ****     /* USER CODE END WHILE */
+ 177:Core/Src/main.c **** 
+ 178:Core/Src/main.c ****     /* USER CODE BEGIN 3 */
+ 179:Core/Src/main.c ****     switch (state)
+ 180:Core/Src/main.c ****     {
+ 181:Core/Src/main.c ****     case STATE_PAUSE:
+ 182:Core/Src/main.c ****       debug_printf("[PAUSE] Pause work\r\n");
+ 183:Core/Src/main.c ****       /* Stop TIM1 */
+ 184:Core/Src/main.c ****       HAL_TIM_Base_Stop_IT(&htim1);
+ 185:Core/Src/main.c **** 
+ 186:Core/Src/main.c ****       /*Suspend Tick increment to prevent wakeup by Systick interrupt. 
+ 187:Core/Src/main.c ****       Otherwise the Systick interrupt will wake up the device within 1ms (HAL time base)*/
+ 188:Core/Src/main.c ****       HAL_SuspendTick();
+ 189:Core/Src/main.c ****       /* Enable Power Control clock */
+ 190:Core/Src/main.c ****       __HAL_RCC_PWR_CLK_ENABLE();
+ 191:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 192:Core/Src/main.c ****       HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+ 193:Core/Src/main.c ****       /* Resume Tick interrupt if disabled prior to sleep mode entry*/
+ 194:Core/Src/main.c ****       HAL_ResumeTick();
+ 195:Core/Src/main.c ****       debug_printf("[PAUSE] Wake up from sleep mode\r\n");
+ 196:Core/Src/main.c ****       break;
+ 197:Core/Src/main.c ****     case STATE_IDLE:
+ 198:Core/Src/main.c ****       debug_printf("[IDLE] Enter sleep mode\r\n");
+ 199:Core/Src/main.c ****       /*Suspend Tick increment to prevent wakeup by Systick interrupt. 
+ 200:Core/Src/main.c ****       Otherwise the Systick interrupt will wake up the device within 1ms (HAL time base)*/
+ 201:Core/Src/main.c ****       HAL_SuspendTick();
+ 202:Core/Src/main.c ****       /* Enable Power Control clock */
+ 203:Core/Src/main.c ****       __HAL_RCC_PWR_CLK_ENABLE();
+ 204:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 205:Core/Src/main.c ****       HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+ 206:Core/Src/main.c ****       /* Resume Tick interrupt if disabled prior to sleep mode entry*/
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 10
 
 
- 159:Core/Src/main.c ****     /* USER CODE BEGIN 3 */
- 160:Core/Src/main.c ****     switch (state)
- 161:Core/Src/main.c ****     {
- 162:Core/Src/main.c ****     case STATE_STOP:
- 163:Core/Src/main.c ****       debug_printf("[STOP] Stop work\r\n");
- 164:Core/Src/main.c ****       state = STATE_IDLE;
- 165:Core/Src/main.c ****     case STATE_IDLE:
- 166:Core/Src/main.c ****       debug_printf("[IDLE] Enter sleep mode\r\n");
- 167:Core/Src/main.c ****       /*Suspend Tick increment to prevent wakeup by Systick interrupt. 
- 168:Core/Src/main.c ****       Otherwise the Systick interrupt will wake up the device within 1ms (HAL time base)*/
- 169:Core/Src/main.c ****       HAL_SuspendTick();
- 170:Core/Src/main.c ****       /* Enable Power Control clock */
- 171:Core/Src/main.c ****       __HAL_RCC_PWR_CLK_ENABLE();
- 172:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
- 173:Core/Src/main.c ****       HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
- 174:Core/Src/main.c ****       /* Resume Tick interrupt if disabled prior to sleep mode entry*/
- 175:Core/Src/main.c ****       HAL_ResumeTick();
- 176:Core/Src/main.c ****       debug_printf("[IDLE] Wake up from sleep mode\r\n");
- 177:Core/Src/main.c ****       break;
- 178:Core/Src/main.c ****     case STATE_WORK:
- 179:Core/Src/main.c ****       debug_printf("[WORK] Do work for %d ms\r\n", work);
- 180:Core/Src/main.c ****       result = do_work(work);
- 181:Core/Src/main.c ****       if(result == 0) // right
- 182:Core/Src/main.c ****       {
- 183:Core/Src/main.c ****         state = STATE_IDLE;
- 184:Core/Src/main.c ****         HAL_TIM_Base_Start_IT(&htim1);
- 185:Core/Src/main.c ****       }
- 186:Core/Src/main.c ****       break;
- 187:Core/Src/main.c **** 
- 188:Core/Src/main.c ****     default:
- 189:Core/Src/main.c ****       break;
- 190:Core/Src/main.c ****     }
- 191:Core/Src/main.c ****   }
- 192:Core/Src/main.c ****   /* USER CODE END 3 */
- 193:Core/Src/main.c **** }
- 194:Core/Src/main.c **** 
- 195:Core/Src/main.c **** /**
- 196:Core/Src/main.c ****   * @brief System Clock Configuration
- 197:Core/Src/main.c ****   * @retval None
- 198:Core/Src/main.c ****   */
- 199:Core/Src/main.c **** void SystemClock_Config(void)
- 200:Core/Src/main.c **** {
- 201:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
- 202:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 203:Core/Src/main.c **** 
- 204:Core/Src/main.c ****   /** Initializes the RCC Oscillators according to the specified parameters
- 205:Core/Src/main.c ****   * in the RCC_OscInitTypeDef structure.
- 206:Core/Src/main.c ****   */
- 207:Core/Src/main.c ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
- 208:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
- 209:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
- 210:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 211:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 212:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
- 213:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
- 214:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 215:Core/Src/main.c ****   {
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 9
-
-
- 216:Core/Src/main.c ****     Error_Handler();
- 217:Core/Src/main.c ****   }
- 218:Core/Src/main.c **** 
- 219:Core/Src/main.c ****   /** Initializes the CPU, AHB and APB buses clocks
- 220:Core/Src/main.c ****   */
- 221:Core/Src/main.c ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
- 222:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 223:Core/Src/main.c ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
- 224:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 225:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
- 226:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 227:Core/Src/main.c **** 
- 228:Core/Src/main.c ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
- 229:Core/Src/main.c ****   {
- 230:Core/Src/main.c ****     Error_Handler();
- 231:Core/Src/main.c ****   }
- 232:Core/Src/main.c **** }
- 233:Core/Src/main.c **** 
- 234:Core/Src/main.c **** /* USER CODE BEGIN 4 */
+ 207:Core/Src/main.c ****       HAL_ResumeTick();
+ 208:Core/Src/main.c ****       debug_printf("[IDLE] Wake up from sleep mode\r\n");
+ 209:Core/Src/main.c ****       break;
+ 210:Core/Src/main.c ****     case STATE_WORK:
+ 211:Core/Src/main.c ****       debug_printf("[WORK] Do work for %d ms\r\n", work);
+ 212:Core/Src/main.c ****       result = do_work(work);
+ 213:Core/Src/main.c ****       if(result == 0 && state == STATE_WORK) // right
+ 214:Core/Src/main.c ****       {
+ 215:Core/Src/main.c ****         state = STATE_IDLE;
+ 216:Core/Src/main.c ****         HAL_TIM_Base_Start_IT(&htim1);
+ 217:Core/Src/main.c ****       }
+ 218:Core/Src/main.c ****       break;
+ 219:Core/Src/main.c **** 
+ 220:Core/Src/main.c ****     default:
+ 221:Core/Src/main.c ****       break;
+ 222:Core/Src/main.c ****     }
+ 223:Core/Src/main.c ****   }
+ 224:Core/Src/main.c ****   /* USER CODE END 3 */
+ 225:Core/Src/main.c **** }
+ 226:Core/Src/main.c **** 
+ 227:Core/Src/main.c **** /**
+ 228:Core/Src/main.c ****   * @brief System Clock Configuration
+ 229:Core/Src/main.c ****   * @retval None
+ 230:Core/Src/main.c ****   */
+ 231:Core/Src/main.c **** void SystemClock_Config(void)
+ 232:Core/Src/main.c **** {
+ 233:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 234:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  235:Core/Src/main.c **** 
- 236:Core/Src/main.c **** /* USER CODE END 4 */
- 237:Core/Src/main.c **** 
- 238:Core/Src/main.c **** /**
- 239:Core/Src/main.c ****   * @brief  This function is executed in case of error occurrence.
- 240:Core/Src/main.c ****   * @retval None
- 241:Core/Src/main.c ****   */
- 242:Core/Src/main.c **** void Error_Handler(void)
- 243:Core/Src/main.c **** {
- 220              		.loc 1 243 1 is_stmt 1 view -0
- 221              		.cfi_startproc
- 222              		@ Volatile: function does not return.
- 223              		@ args = 0, pretend = 0, frame = 0
- 224              		@ frame_needed = 0, uses_anonymous_args = 0
- 225 0000 08B5     		push	{r3, lr}
- 226              	.LCFI2:
- 227              		.cfi_def_cfa_offset 8
- 228              		.cfi_offset 3, -8
- 229              		.cfi_offset 14, -4
- 244:Core/Src/main.c ****   /* USER CODE BEGIN Error_Handler_Debug */
- 245:Core/Src/main.c ****   debug_printf("[Error]\r\n");
- 230              		.loc 1 245 3 view .LVU40
- 231 0002 0248     		ldr	r0, .L19
- 232 0004 FFF7FEFF 		bl	debug_printf
- 233              	.LVL13:
- 246:Core/Src/main.c ****   /* User can add his own implementation to report the HAL error return state */
- 247:Core/Src/main.c ****   __disable_irq();
- 234              		.loc 1 247 3 view .LVU41
- 235              	.LBB4:
- 236              	.LBI4:
- 237              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
+ 236:Core/Src/main.c ****   /** Initializes the RCC Oscillators according to the specified parameters
+ 237:Core/Src/main.c ****   * in the RCC_OscInitTypeDef structure.
+ 238:Core/Src/main.c ****   */
+ 239:Core/Src/main.c ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+ 240:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+ 241:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+ 242:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 243:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 244:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 245:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+ 246:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 247:Core/Src/main.c ****   {
+ 248:Core/Src/main.c ****     Error_Handler();
+ 249:Core/Src/main.c ****   }
+ 250:Core/Src/main.c **** 
+ 251:Core/Src/main.c ****   /** Initializes the CPU, AHB and APB buses clocks
+ 252:Core/Src/main.c ****   */
+ 253:Core/Src/main.c ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 254:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 255:Core/Src/main.c ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 256:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 257:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+ 258:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 259:Core/Src/main.c **** 
+ 260:Core/Src/main.c ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+ 261:Core/Src/main.c ****   {
+ 262:Core/Src/main.c ****     Error_Handler();
+ 263:Core/Src/main.c ****   }
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 11
+
+
+ 264:Core/Src/main.c **** }
+ 265:Core/Src/main.c **** 
+ 266:Core/Src/main.c **** /* USER CODE BEGIN 4 */
+ 267:Core/Src/main.c **** 
+ 268:Core/Src/main.c **** /* USER CODE END 4 */
+ 269:Core/Src/main.c **** 
+ 270:Core/Src/main.c **** /**
+ 271:Core/Src/main.c ****   * @brief  This function is executed in case of error occurrence.
+ 272:Core/Src/main.c ****   * @retval None
+ 273:Core/Src/main.c ****   */
+ 274:Core/Src/main.c **** void Error_Handler(void)
+ 275:Core/Src/main.c **** {
+ 268              		.loc 1 275 1 is_stmt 1 view -0
+ 269              		.cfi_startproc
+ 270              		@ Volatile: function does not return.
+ 271              		@ args = 0, pretend = 0, frame = 0
+ 272              		@ frame_needed = 0, uses_anonymous_args = 0
+ 273 0000 08B5     		push	{r3, lr}
+ 274              	.LCFI2:
+ 275              		.cfi_def_cfa_offset 8
+ 276              		.cfi_offset 3, -8
+ 277              		.cfi_offset 14, -4
+ 276:Core/Src/main.c ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 277:Core/Src/main.c ****   debug_printf("[Error]\r\n");
+ 278              		.loc 1 277 3 view .LVU58
+ 279 0002 0248     		ldr	r0, .L23
+ 280 0004 FFF7FEFF 		bl	debug_printf
+ 281              	.LVL14:
+ 278:Core/Src/main.c ****   /* User can add his own implementation to report the HAL error return state */
+ 279:Core/Src/main.c ****   __disable_irq();
+ 282              		.loc 1 279 3 view .LVU59
+ 283              	.LBB4:
+ 284              	.LBI4:
+ 285              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
    1:Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
    2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
    3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
@@ -538,9 +642,6 @@ ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 1
    5:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @date     09. April 2018
    6:Drivers/CMSIS/Include/cmsis_gcc.h ****  ******************************************************************************/
    7:Drivers/CMSIS/Include/cmsis_gcc.h **** /*
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 10
-
-
    8:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Copyright (c) 2009-2018 Arm Limited. All rights reserved.
    9:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
   10:Drivers/CMSIS/Include/cmsis_gcc.h ****  * SPDX-License-Identifier: Apache-2.0
@@ -557,6 +658,9 @@ ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 1
   21:Drivers/CMSIS/Include/cmsis_gcc.h ****  * See the License for the specific language governing permissions and
   22:Drivers/CMSIS/Include/cmsis_gcc.h ****  * limitations under the License.
   23:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 12
+
+
   24:Drivers/CMSIS/Include/cmsis_gcc.h **** 
   25:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __CMSIS_GCC_H
   26:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_H
@@ -598,9 +702,6 @@ ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 1
   62:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED                               __attribute__((packed, aligned(1)))
   63:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   64:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_STRUCT
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 11
-
-
   65:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_STRUCT                        struct __attribute__((packed, aligned(1)))
   66:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   67:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_UNION
@@ -617,6 +718,9 @@ ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 1
   78:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_WRITE
   79:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
   80:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 13
+
+
   81:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
   82:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_WRITE { uint16_t v; };
   83:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
@@ -658,9 +762,6 @@ ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 1
  119:Drivers/CMSIS/Include/cmsis_gcc.h **** /** \ingroup  CMSIS_Core_FunctionInterface
  120:Drivers/CMSIS/Include/cmsis_gcc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
  121:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 12
-
-
  122:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  123:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  124:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -677,543 +778,605 @@ ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 1
  135:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  136:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Disable IRQ Interrupts
  137:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Disables IRQ interrupts by setting the I-bit in the CPSR.
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 14
+
+
  138:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
  139:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  140:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __disable_irq(void)
- 238              		.loc 2 140 27 view .LVU42
- 239              	.LBB5:
+ 286              		.loc 2 140 27 view .LVU60
+ 287              	.LBB5:
  141:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  142:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
- 240              		.loc 2 142 3 view .LVU43
- 241              		.syntax unified
- 242              	@ 142 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 243 0008 72B6     		cpsid i
- 244              	@ 0 "" 2
- 245              		.thumb
- 246              		.syntax unified
- 247              	.L17:
- 248              	.LBE5:
- 249              	.LBE4:
- 248:Core/Src/main.c ****   while (1)
- 250              		.loc 1 248 3 discriminator 1 view .LVU44
- 249:Core/Src/main.c ****   {
- 250:Core/Src/main.c ****   }
- 251              		.loc 1 250 3 discriminator 1 view .LVU45
- 248:Core/Src/main.c ****   while (1)
- 252              		.loc 1 248 9 discriminator 1 view .LVU46
- 253 000a FEE7     		b	.L17
- 254              	.L20:
- 255              		.align	2
- 256              	.L19:
- 257 000c 00000000 		.word	.LC3
- 258              		.cfi_endproc
- 259              	.LFE70:
- 261              		.section	.text.SystemClock_Config,"ax",%progbits
- 262              		.align	1
- 263              		.global	SystemClock_Config
- 264              		.syntax unified
- 265              		.thumb
- 266              		.thumb_func
- 268              	SystemClock_Config:
- 269              	.LFB69:
- 200:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
- 270              		.loc 1 200 1 view -0
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 13
+ 288              		.loc 2 142 3 view .LVU61
+ 289              		.syntax unified
+ 290              	@ 142 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 291 0008 72B6     		cpsid i
+ 292              	@ 0 "" 2
+ 293              		.thumb
+ 294              		.syntax unified
+ 295              	.L21:
+ 296              	.LBE5:
+ 297              	.LBE4:
+ 280:Core/Src/main.c ****   while (1)
+ 298              		.loc 1 280 3 discriminator 1 view .LVU62
+ 281:Core/Src/main.c ****   {
+ 282:Core/Src/main.c ****   }
+ 299              		.loc 1 282 3 discriminator 1 view .LVU63
+ 280:Core/Src/main.c ****   while (1)
+ 300              		.loc 1 280 9 discriminator 1 view .LVU64
+ 301 000a FEE7     		b	.L21
+ 302              	.L24:
+ 303              		.align	2
+ 304              	.L23:
+ 305 000c 00000000 		.word	.LC3
+ 306              		.cfi_endproc
+ 307              	.LFE70:
+ 309              		.section	.text.SystemClock_Config,"ax",%progbits
+ 310              		.align	1
+ 311              		.global	SystemClock_Config
+ 312              		.syntax unified
+ 313              		.thumb
+ 314              		.thumb_func
+ 316              	SystemClock_Config:
+ 317              	.LFB69:
+ 232:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 318              		.loc 1 232 1 view -0
+ 319              		.cfi_startproc
+ 320              		@ args = 0, pretend = 0, frame = 64
+ 321              		@ frame_needed = 0, uses_anonymous_args = 0
+ 322 0000 00B5     		push	{lr}
+ 323              	.LCFI3:
+ 324              		.cfi_def_cfa_offset 4
+ 325              		.cfi_offset 14, -4
+ 326 0002 91B0     		sub	sp, sp, #68
+ 327              	.LCFI4:
+ 328              		.cfi_def_cfa_offset 72
+ 233:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 329              		.loc 1 233 3 view .LVU66
+ 233:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 330              		.loc 1 233 22 is_stmt 0 view .LVU67
+ 331 0004 2822     		movs	r2, #40
+ 332 0006 0021     		movs	r1, #0
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 15
 
 
- 271              		.cfi_startproc
- 272              		@ args = 0, pretend = 0, frame = 64
- 273              		@ frame_needed = 0, uses_anonymous_args = 0
- 274 0000 00B5     		push	{lr}
- 275              	.LCFI3:
- 276              		.cfi_def_cfa_offset 4
- 277              		.cfi_offset 14, -4
- 278 0002 91B0     		sub	sp, sp, #68
- 279              	.LCFI4:
- 280              		.cfi_def_cfa_offset 72
- 201:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 281              		.loc 1 201 3 view .LVU48
- 201:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 282              		.loc 1 201 22 is_stmt 0 view .LVU49
- 283 0004 2822     		movs	r2, #40
- 284 0006 0021     		movs	r1, #0
- 285 0008 06A8     		add	r0, sp, #24
- 286 000a FFF7FEFF 		bl	memset
- 287              	.LVL14:
- 202:Core/Src/main.c **** 
- 288              		.loc 1 202 3 is_stmt 1 view .LVU50
- 202:Core/Src/main.c **** 
- 289              		.loc 1 202 22 is_stmt 0 view .LVU51
- 290 000e 0023     		movs	r3, #0
- 291 0010 0193     		str	r3, [sp, #4]
- 292 0012 0293     		str	r3, [sp, #8]
- 293 0014 0393     		str	r3, [sp, #12]
- 294 0016 0493     		str	r3, [sp, #16]
- 295 0018 0593     		str	r3, [sp, #20]
- 207:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
- 296              		.loc 1 207 3 is_stmt 1 view .LVU52
- 207:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
- 297              		.loc 1 207 36 is_stmt 0 view .LVU53
- 298 001a 0122     		movs	r2, #1
- 299 001c 0692     		str	r2, [sp, #24]
- 208:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
- 300              		.loc 1 208 3 is_stmt 1 view .LVU54
- 208:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
- 301              		.loc 1 208 30 is_stmt 0 view .LVU55
- 302 001e 4FF48033 		mov	r3, #65536
- 303 0022 0793     		str	r3, [sp, #28]
- 209:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 304              		.loc 1 209 3 is_stmt 1 view .LVU56
- 210:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 305              		.loc 1 210 3 view .LVU57
- 210:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 306              		.loc 1 210 30 is_stmt 0 view .LVU58
- 307 0024 0A92     		str	r2, [sp, #40]
- 211:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
- 308              		.loc 1 211 3 is_stmt 1 view .LVU59
- 211:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
- 309              		.loc 1 211 34 is_stmt 0 view .LVU60
- 310 0026 0222     		movs	r2, #2
- 311 0028 0D92     		str	r2, [sp, #52]
- 212:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
- 312              		.loc 1 212 3 is_stmt 1 view .LVU61
- 212:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 14
+ 333 0008 06A8     		add	r0, sp, #24
+ 334 000a FFF7FEFF 		bl	memset
+ 335              	.LVL15:
+ 234:Core/Src/main.c **** 
+ 336              		.loc 1 234 3 is_stmt 1 view .LVU68
+ 234:Core/Src/main.c **** 
+ 337              		.loc 1 234 22 is_stmt 0 view .LVU69
+ 338 000e 0023     		movs	r3, #0
+ 339 0010 0193     		str	r3, [sp, #4]
+ 340 0012 0293     		str	r3, [sp, #8]
+ 341 0014 0393     		str	r3, [sp, #12]
+ 342 0016 0493     		str	r3, [sp, #16]
+ 343 0018 0593     		str	r3, [sp, #20]
+ 239:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+ 344              		.loc 1 239 3 is_stmt 1 view .LVU70
+ 239:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+ 345              		.loc 1 239 36 is_stmt 0 view .LVU71
+ 346 001a 0122     		movs	r2, #1
+ 347 001c 0692     		str	r2, [sp, #24]
+ 240:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+ 348              		.loc 1 240 3 is_stmt 1 view .LVU72
+ 240:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+ 349              		.loc 1 240 30 is_stmt 0 view .LVU73
+ 350 001e 4FF48033 		mov	r3, #65536
+ 351 0022 0793     		str	r3, [sp, #28]
+ 241:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 352              		.loc 1 241 3 is_stmt 1 view .LVU74
+ 242:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 353              		.loc 1 242 3 view .LVU75
+ 242:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 354              		.loc 1 242 30 is_stmt 0 view .LVU76
+ 355 0024 0A92     		str	r2, [sp, #40]
+ 243:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 356              		.loc 1 243 3 is_stmt 1 view .LVU77
+ 243:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 357              		.loc 1 243 34 is_stmt 0 view .LVU78
+ 358 0026 0222     		movs	r2, #2
+ 359 0028 0D92     		str	r2, [sp, #52]
+ 244:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+ 360              		.loc 1 244 3 is_stmt 1 view .LVU79
+ 244:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+ 361              		.loc 1 244 35 is_stmt 0 view .LVU80
+ 362 002a 0E93     		str	r3, [sp, #56]
+ 245:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 363              		.loc 1 245 3 is_stmt 1 view .LVU81
+ 245:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 364              		.loc 1 245 32 is_stmt 0 view .LVU82
+ 365 002c 4FF4E013 		mov	r3, #1835008
+ 366 0030 0F93     		str	r3, [sp, #60]
+ 246:Core/Src/main.c ****   {
+ 367              		.loc 1 246 3 is_stmt 1 view .LVU83
+ 246:Core/Src/main.c ****   {
+ 368              		.loc 1 246 7 is_stmt 0 view .LVU84
+ 369 0032 06A8     		add	r0, sp, #24
+ 370 0034 FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 371              	.LVL16:
+ 246:Core/Src/main.c ****   {
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 16
 
 
- 313              		.loc 1 212 35 is_stmt 0 view .LVU62
- 314 002a 0E93     		str	r3, [sp, #56]
- 213:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 315              		.loc 1 213 3 is_stmt 1 view .LVU63
- 213:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 316              		.loc 1 213 32 is_stmt 0 view .LVU64
- 317 002c 4FF4E013 		mov	r3, #1835008
- 318 0030 0F93     		str	r3, [sp, #60]
- 214:Core/Src/main.c ****   {
- 319              		.loc 1 214 3 is_stmt 1 view .LVU65
- 214:Core/Src/main.c ****   {
- 320              		.loc 1 214 7 is_stmt 0 view .LVU66
- 321 0032 06A8     		add	r0, sp, #24
- 322 0034 FFF7FEFF 		bl	HAL_RCC_OscConfig
- 323              	.LVL15:
- 214:Core/Src/main.c ****   {
- 324              		.loc 1 214 6 view .LVU67
- 325 0038 80B9     		cbnz	r0, .L25
- 221:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 326              		.loc 1 221 3 is_stmt 1 view .LVU68
- 221:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 327              		.loc 1 221 31 is_stmt 0 view .LVU69
- 328 003a 0F23     		movs	r3, #15
- 329 003c 0193     		str	r3, [sp, #4]
- 223:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 330              		.loc 1 223 3 is_stmt 1 view .LVU70
- 223:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 331              		.loc 1 223 34 is_stmt 0 view .LVU71
- 332 003e 0221     		movs	r1, #2
- 333 0040 0291     		str	r1, [sp, #8]
- 224:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
- 334              		.loc 1 224 3 is_stmt 1 view .LVU72
- 224:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
- 335              		.loc 1 224 35 is_stmt 0 view .LVU73
- 336 0042 0023     		movs	r3, #0
- 337 0044 0393     		str	r3, [sp, #12]
- 225:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 338              		.loc 1 225 3 is_stmt 1 view .LVU74
- 225:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 339              		.loc 1 225 36 is_stmt 0 view .LVU75
- 340 0046 4FF48062 		mov	r2, #1024
- 341 004a 0492     		str	r2, [sp, #16]
- 226:Core/Src/main.c **** 
- 342              		.loc 1 226 3 is_stmt 1 view .LVU76
- 226:Core/Src/main.c **** 
- 343              		.loc 1 226 36 is_stmt 0 view .LVU77
- 344 004c 0593     		str	r3, [sp, #20]
- 228:Core/Src/main.c ****   {
- 345              		.loc 1 228 3 is_stmt 1 view .LVU78
- 228:Core/Src/main.c ****   {
- 346              		.loc 1 228 7 is_stmt 0 view .LVU79
- 347 004e 01A8     		add	r0, sp, #4
- 348 0050 FFF7FEFF 		bl	HAL_RCC_ClockConfig
- 349              	.LVL16:
- 228:Core/Src/main.c ****   {
- 350              		.loc 1 228 6 view .LVU80
- 351 0054 20B9     		cbnz	r0, .L26
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 15
+ 372              		.loc 1 246 6 view .LVU85
+ 373 0038 80B9     		cbnz	r0, .L29
+ 253:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 374              		.loc 1 253 3 is_stmt 1 view .LVU86
+ 253:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 375              		.loc 1 253 31 is_stmt 0 view .LVU87
+ 376 003a 0F23     		movs	r3, #15
+ 377 003c 0193     		str	r3, [sp, #4]
+ 255:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 378              		.loc 1 255 3 is_stmt 1 view .LVU88
+ 255:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 379              		.loc 1 255 34 is_stmt 0 view .LVU89
+ 380 003e 0221     		movs	r1, #2
+ 381 0040 0291     		str	r1, [sp, #8]
+ 256:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+ 382              		.loc 1 256 3 is_stmt 1 view .LVU90
+ 256:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+ 383              		.loc 1 256 35 is_stmt 0 view .LVU91
+ 384 0042 0023     		movs	r3, #0
+ 385 0044 0393     		str	r3, [sp, #12]
+ 257:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 386              		.loc 1 257 3 is_stmt 1 view .LVU92
+ 257:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 387              		.loc 1 257 36 is_stmt 0 view .LVU93
+ 388 0046 4FF48062 		mov	r2, #1024
+ 389 004a 0492     		str	r2, [sp, #16]
+ 258:Core/Src/main.c **** 
+ 390              		.loc 1 258 3 is_stmt 1 view .LVU94
+ 258:Core/Src/main.c **** 
+ 391              		.loc 1 258 36 is_stmt 0 view .LVU95
+ 392 004c 0593     		str	r3, [sp, #20]
+ 260:Core/Src/main.c ****   {
+ 393              		.loc 1 260 3 is_stmt 1 view .LVU96
+ 260:Core/Src/main.c ****   {
+ 394              		.loc 1 260 7 is_stmt 0 view .LVU97
+ 395 004e 01A8     		add	r0, sp, #4
+ 396 0050 FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 397              	.LVL17:
+ 260:Core/Src/main.c ****   {
+ 398              		.loc 1 260 6 view .LVU98
+ 399 0054 20B9     		cbnz	r0, .L30
+ 264:Core/Src/main.c **** 
+ 400              		.loc 1 264 1 view .LVU99
+ 401 0056 11B0     		add	sp, sp, #68
+ 402              	.LCFI5:
+ 403              		.cfi_remember_state
+ 404              		.cfi_def_cfa_offset 4
+ 405              		@ sp needed
+ 406 0058 5DF804FB 		ldr	pc, [sp], #4
+ 407              	.L29:
+ 408              	.LCFI6:
+ 409              		.cfi_restore_state
+ 248:Core/Src/main.c ****   }
+ 410              		.loc 1 248 5 is_stmt 1 view .LVU100
+ 411 005c FFF7FEFF 		bl	Error_Handler
+ 412              	.LVL18:
+ 413              	.L30:
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 17
 
 
- 232:Core/Src/main.c **** 
- 352              		.loc 1 232 1 view .LVU81
- 353 0056 11B0     		add	sp, sp, #68
- 354              	.LCFI5:
- 355              		.cfi_remember_state
- 356              		.cfi_def_cfa_offset 4
- 357              		@ sp needed
- 358 0058 5DF804FB 		ldr	pc, [sp], #4
- 359              	.L25:
- 360              	.LCFI6:
- 361              		.cfi_restore_state
- 216:Core/Src/main.c ****   }
- 362              		.loc 1 216 5 is_stmt 1 view .LVU82
- 363 005c FFF7FEFF 		bl	Error_Handler
- 364              	.LVL17:
- 365              	.L26:
- 230:Core/Src/main.c ****   }
- 366              		.loc 1 230 5 view .LVU83
- 367 0060 FFF7FEFF 		bl	Error_Handler
- 368              	.LVL18:
- 369              		.cfi_endproc
- 370              	.LFE69:
- 372              		.section	.rodata.main.str1.4,"aMS",%progbits,1
- 373              		.align	2
- 374              	.LC4:
- 375 0000 506F7765 		.ascii	"Power controller test\015\012\000"
- 375      7220636F 
- 375      6E74726F 
- 375      6C6C6572 
- 375      20746573 
- 376              		.align	2
- 377              	.LC5:
- 378 0018 53746172 		.ascii	"Start timer failed\015\012\000"
- 378      74207469 
- 378      6D657220 
- 378      6661696C 
- 378      65640D0A 
- 379 002d 000000   		.align	2
- 380              	.LC6:
- 381 0030 53746172 		.ascii	"Start uart failed\015\012\000"
- 381      74207561 
- 381      72742066 
- 381      61696C65 
- 381      640D0A00 
- 382              		.align	2
- 383              	.LC7:
- 384 0044 5B53544F 		.ascii	"[STOP] Stop work\015\012\000"
- 384      505D2053 
- 384      746F7020 
- 384      776F726B 
- 384      0D0A00
- 385 0057 00       		.align	2
- 386              	.LC8:
- 387 0058 5B49444C 		.ascii	"[IDLE] Enter sleep mode\015\012\000"
- 387      455D2045 
- 387      6E746572 
- 387      20736C65 
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 16
-
-
- 387      6570206D 
- 388 0072 0000     		.align	2
- 389              	.LC9:
- 390 0074 5B49444C 		.ascii	"[IDLE] Wake up from sleep mode\015\012\000"
- 390      455D2057 
- 390      616B6520 
- 390      75702066 
- 390      726F6D20 
- 391 0095 000000   		.align	2
- 392              	.LC10:
- 393 0098 5B574F52 		.ascii	"[WORK] Do work for %d ms\015\012\000"
- 393      4B5D2044 
- 393      6F20776F 
- 393      726B2066 
- 393      6F722025 
- 394              		.section	.text.main,"ax",%progbits
- 395              		.align	1
- 396              		.global	main
- 397              		.syntax unified
- 398              		.thumb
- 399              		.thumb_func
- 401              	main:
- 402              	.LFB68:
- 113:Core/Src/main.c ****   /* USER CODE BEGIN 1 */
- 403              		.loc 1 113 1 view -0
- 404              		.cfi_startproc
- 405              		@ args = 0, pretend = 0, frame = 8
- 406              		@ frame_needed = 0, uses_anonymous_args = 0
- 407 0000 10B5     		push	{r4, lr}
- 408              	.LCFI7:
- 409              		.cfi_def_cfa_offset 8
- 410              		.cfi_offset 4, -8
- 411              		.cfi_offset 14, -4
- 412 0002 82B0     		sub	sp, sp, #8
- 413              	.LCFI8:
- 414              		.cfi_def_cfa_offset 16
- 115:Core/Src/main.c ****   /* USER CODE END 1 */
- 415              		.loc 1 115 3 view .LVU85
+ 262:Core/Src/main.c ****   }
+ 414              		.loc 1 262 5 view .LVU101
+ 415 0060 FFF7FEFF 		bl	Error_Handler
  416              	.LVL19:
- 121:Core/Src/main.c **** 
- 417              		.loc 1 121 3 view .LVU86
- 418 0004 FFF7FEFF 		bl	HAL_Init
- 419              	.LVL20:
- 128:Core/Src/main.c **** 
- 420              		.loc 1 128 3 view .LVU87
- 421 0008 FFF7FEFF 		bl	SystemClock_Config
- 422              	.LVL21:
- 135:Core/Src/main.c ****   MX_USART1_UART_Init();
- 423              		.loc 1 135 3 view .LVU88
- 424 000c FFF7FEFF 		bl	MX_GPIO_Init
- 425              	.LVL22:
- 136:Core/Src/main.c ****   MX_TIM1_Init();
- 426              		.loc 1 136 3 view .LVU89
- 427 0010 FFF7FEFF 		bl	MX_USART1_UART_Init
- 428              	.LVL23:
- 137:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
- 429              		.loc 1 137 3 view .LVU90
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 17
+ 417              		.cfi_endproc
+ 418              	.LFE69:
+ 420              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 421              		.align	2
+ 422              	.LC4:
+ 423 0000 506F7765 		.ascii	"Power controller test\015\012\000"
+ 423      7220636F 
+ 423      6E74726F 
+ 423      6C6C6572 
+ 423      20746573 
+ 424              		.align	2
+ 425              	.LC5:
+ 426 0018 53746172 		.ascii	"Start timer failed\015\012\000"
+ 426      74207469 
+ 426      6D657220 
+ 426      6661696C 
+ 426      65640D0A 
+ 427 002d 000000   		.align	2
+ 428              	.LC6:
+ 429 0030 53746172 		.ascii	"Start uart failed\015\012\000"
+ 429      74207561 
+ 429      72742066 
+ 429      61696C65 
+ 429      640D0A00 
+ 430              		.align	2
+ 431              	.LC7:
+ 432 0044 5B504155 		.ascii	"[PAUSE] Pause work\015\012\000"
+ 432      53455D20 
+ 432      50617573 
+ 432      6520776F 
+ 432      726B0D0A 
+ 433 0059 000000   		.align	2
+ 434              	.LC8:
+ 435 005c 5B504155 		.ascii	"[PAUSE] Wake up from sleep mode\015\012\000"
+ 435      53455D20 
+ 435      57616B65 
+ 435      20757020 
+ 435      66726F6D 
+ 436 007e 0000     		.align	2
+ 437              	.LC9:
+ 438 0080 5B49444C 		.ascii	"[IDLE] Enter sleep mode\015\012\000"
+ 438      455D2045 
+ 438      6E746572 
+ 438      20736C65 
+ 438      6570206D 
+ 439 009a 0000     		.align	2
+ 440              	.LC10:
+ 441 009c 5B49444C 		.ascii	"[IDLE] Wake up from sleep mode\015\012\000"
+ 441      455D2057 
+ 441      616B6520 
+ 441      75702066 
+ 441      726F6D20 
+ 442 00bd 000000   		.align	2
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 18
 
 
- 430 0014 FFF7FEFF 		bl	MX_TIM1_Init
- 431              	.LVL24:
- 144:Core/Src/main.c ****   if(HAL_TIM_Base_Start_IT(&htim1) != HAL_OK)
- 432              		.loc 1 144 3 view .LVU91
- 433 0018 2748     		ldr	r0, .L36
- 434 001a FFF7FEFF 		bl	debug_printf
- 435              	.LVL25:
- 145:Core/Src/main.c ****   {
- 436              		.loc 1 145 3 view .LVU92
- 145:Core/Src/main.c ****   {
- 437              		.loc 1 145 6 is_stmt 0 view .LVU93
- 438 001e 2748     		ldr	r0, .L36+4
- 439 0020 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
- 440              	.LVL26:
- 145:Core/Src/main.c ****   {
- 441              		.loc 1 145 5 view .LVU94
- 442 0024 20B1     		cbz	r0, .L28
- 147:Core/Src/main.c ****     Error_Handler();
- 443              		.loc 1 147 5 is_stmt 1 view .LVU95
- 444 0026 2648     		ldr	r0, .L36+8
- 445 0028 FFF7FEFF 		bl	debug_printf
- 446              	.LVL27:
- 148:Core/Src/main.c ****   }
- 447              		.loc 1 148 5 view .LVU96
- 448 002c FFF7FEFF 		bl	Error_Handler
- 449              	.LVL28:
- 450              	.L28:
- 150:Core/Src/main.c ****   {
- 451              		.loc 1 150 3 view .LVU97
- 150:Core/Src/main.c ****   {
- 452              		.loc 1 150 6 is_stmt 0 view .LVU98
- 453 0030 0122     		movs	r2, #1
- 454 0032 2449     		ldr	r1, .L36+12
- 455 0034 2448     		ldr	r0, .L36+16
- 456 0036 FFF7FEFF 		bl	HAL_UART_Receive_IT
- 457              	.LVL29:
- 150:Core/Src/main.c ****   {
- 458              		.loc 1 150 5 view .LVU99
- 459 003a 10B3     		cbz	r0, .L33
- 152:Core/Src/main.c ****     Error_Handler();
- 460              		.loc 1 152 5 is_stmt 1 view .LVU100
- 461 003c 2348     		ldr	r0, .L36+20
- 462 003e FFF7FEFF 		bl	debug_printf
- 463              	.LVL30:
- 153:Core/Src/main.c ****   }
- 464              		.loc 1 153 5 view .LVU101
- 465 0042 FFF7FEFF 		bl	Error_Handler
- 466              	.LVL31:
- 467              	.L31:
- 163:Core/Src/main.c ****       state = STATE_IDLE;
- 468              		.loc 1 163 7 view .LVU102
- 469 0046 2248     		ldr	r0, .L36+24
- 470 0048 FFF7FEFF 		bl	debug_printf
- 471              	.LVL32:
- 164:Core/Src/main.c ****     case STATE_IDLE:
- 472              		.loc 1 164 7 view .LVU103
- 164:Core/Src/main.c ****     case STATE_IDLE:
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 18
+ 443              	.LC11:
+ 444 00c0 5B574F52 		.ascii	"[WORK] Do work for %d ms\015\012\000"
+ 444      4B5D2044 
+ 444      6F20776F 
+ 444      726B2066 
+ 444      6F722025 
+ 445              		.section	.text.main,"ax",%progbits
+ 446              		.align	1
+ 447              		.global	main
+ 448              		.syntax unified
+ 449              		.thumb
+ 450              		.thumb_func
+ 452              	main:
+ 453              	.LFB68:
+ 132:Core/Src/main.c ****   /* USER CODE BEGIN 1 */
+ 454              		.loc 1 132 1 view -0
+ 455              		.cfi_startproc
+ 456              		@ args = 0, pretend = 0, frame = 8
+ 457              		@ frame_needed = 0, uses_anonymous_args = 0
+ 458 0000 10B5     		push	{r4, lr}
+ 459              	.LCFI7:
+ 460              		.cfi_def_cfa_offset 8
+ 461              		.cfi_offset 4, -8
+ 462              		.cfi_offset 14, -4
+ 463 0002 82B0     		sub	sp, sp, #8
+ 464              	.LCFI8:
+ 465              		.cfi_def_cfa_offset 16
+ 134:Core/Src/main.c ****   /* USER CODE END 1 */
+ 466              		.loc 1 134 3 view .LVU103
+ 467              	.LVL20:
+ 140:Core/Src/main.c **** 
+ 468              		.loc 1 140 3 view .LVU104
+ 469 0004 FFF7FEFF 		bl	HAL_Init
+ 470              	.LVL21:
+ 147:Core/Src/main.c **** 
+ 471              		.loc 1 147 3 view .LVU105
+ 472 0008 FFF7FEFF 		bl	SystemClock_Config
+ 473              	.LVL22:
+ 154:Core/Src/main.c ****   MX_USART1_UART_Init();
+ 474              		.loc 1 154 3 view .LVU106
+ 475 000c FFF7FEFF 		bl	MX_GPIO_Init
+ 476              	.LVL23:
+ 155:Core/Src/main.c ****   MX_TIM1_Init();
+ 477              		.loc 1 155 3 view .LVU107
+ 478 0010 FFF7FEFF 		bl	MX_USART1_UART_Init
+ 479              	.LVL24:
+ 156:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
+ 480              		.loc 1 156 3 view .LVU108
+ 481 0014 FFF7FEFF 		bl	MX_TIM1_Init
+ 482              	.LVL25:
+ 163:Core/Src/main.c ****   if(HAL_TIM_Base_Start_IT(&htim1) != HAL_OK)
+ 483              		.loc 1 163 3 view .LVU109
+ 484 0018 3348     		ldr	r0, .L40
+ 485 001a FFF7FEFF 		bl	debug_printf
+ 486              	.LVL26:
+ 164:Core/Src/main.c ****   {
+ 487              		.loc 1 164 3 view .LVU110
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 19
 
 
- 473              		.loc 1 164 13 is_stmt 0 view .LVU104
- 474 004c 214B     		ldr	r3, .L36+28
- 475 004e 0022     		movs	r2, #0
- 476 0050 1A70     		strb	r2, [r3]
- 477              	.L32:
- 166:Core/Src/main.c ****       /*Suspend Tick increment to prevent wakeup by Systick interrupt. 
- 478              		.loc 1 166 7 is_stmt 1 view .LVU105
- 479 0052 2148     		ldr	r0, .L36+32
- 480 0054 FFF7FEFF 		bl	debug_printf
- 481              	.LVL33:
- 169:Core/Src/main.c ****       /* Enable Power Control clock */
- 482              		.loc 1 169 7 view .LVU106
- 483 0058 FFF7FEFF 		bl	HAL_SuspendTick
- 484              	.LVL34:
- 171:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
- 485              		.loc 1 171 7 view .LVU107
- 486              	.LBB6:
- 171:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
- 487              		.loc 1 171 7 view .LVU108
- 171:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
- 488              		.loc 1 171 7 view .LVU109
- 489 005c 1F4B     		ldr	r3, .L36+36
- 490 005e DA69     		ldr	r2, [r3, #28]
- 491 0060 42F08052 		orr	r2, r2, #268435456
- 492 0064 DA61     		str	r2, [r3, #28]
- 171:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
- 493              		.loc 1 171 7 view .LVU110
- 494 0066 DB69     		ldr	r3, [r3, #28]
- 495 0068 03F08053 		and	r3, r3, #268435456
- 496 006c 0193     		str	r3, [sp, #4]
- 171:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
- 497              		.loc 1 171 7 view .LVU111
- 498 006e 019B     		ldr	r3, [sp, #4]
- 499              	.LBE6:
- 171:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
- 500              		.loc 1 171 7 view .LVU112
- 173:Core/Src/main.c ****       /* Resume Tick interrupt if disabled prior to sleep mode entry*/
- 501              		.loc 1 173 7 view .LVU113
- 502 0070 0121     		movs	r1, #1
- 503 0072 0020     		movs	r0, #0
- 504 0074 FFF7FEFF 		bl	HAL_PWR_EnterSLEEPMode
- 505              	.LVL35:
- 175:Core/Src/main.c ****       debug_printf("[IDLE] Wake up from sleep mode\r\n");
- 506              		.loc 1 175 7 view .LVU114
- 507 0078 FFF7FEFF 		bl	HAL_ResumeTick
- 508              	.LVL36:
- 176:Core/Src/main.c ****       break;
- 509              		.loc 1 176 7 view .LVU115
- 510 007c 1848     		ldr	r0, .L36+40
- 511 007e FFF7FEFF 		bl	debug_printf
- 512              	.LVL37:
- 177:Core/Src/main.c ****     case STATE_WORK:
- 513              		.loc 1 177 7 view .LVU116
- 514              	.L33:
- 155:Core/Src/main.c ****   {
- 515              		.loc 1 155 3 view .LVU117
- 160:Core/Src/main.c ****     {
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 19
+ 164:Core/Src/main.c ****   {
+ 488              		.loc 1 164 6 is_stmt 0 view .LVU111
+ 489 001e 3348     		ldr	r0, .L40+4
+ 490 0020 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 491              	.LVL27:
+ 164:Core/Src/main.c ****   {
+ 492              		.loc 1 164 5 view .LVU112
+ 493 0024 20B1     		cbz	r0, .L32
+ 166:Core/Src/main.c ****     Error_Handler();
+ 494              		.loc 1 166 5 is_stmt 1 view .LVU113
+ 495 0026 3248     		ldr	r0, .L40+8
+ 496 0028 FFF7FEFF 		bl	debug_printf
+ 497              	.LVL28:
+ 167:Core/Src/main.c ****   }
+ 498              		.loc 1 167 5 view .LVU114
+ 499 002c FFF7FEFF 		bl	Error_Handler
+ 500              	.LVL29:
+ 501              	.L32:
+ 169:Core/Src/main.c ****   {
+ 502              		.loc 1 169 3 view .LVU115
+ 169:Core/Src/main.c ****   {
+ 503              		.loc 1 169 6 is_stmt 0 view .LVU116
+ 504 0030 0122     		movs	r2, #1
+ 505 0032 3049     		ldr	r1, .L40+12
+ 506 0034 3048     		ldr	r0, .L40+16
+ 507 0036 FFF7FEFF 		bl	HAL_UART_Receive_IT
+ 508              	.LVL30:
+ 169:Core/Src/main.c ****   {
+ 509              		.loc 1 169 5 view .LVU117
+ 510 003a F8B1     		cbz	r0, .L37
+ 171:Core/Src/main.c ****     Error_Handler();
+ 511              		.loc 1 171 5 is_stmt 1 view .LVU118
+ 512 003c 2F48     		ldr	r0, .L40+20
+ 513 003e FFF7FEFF 		bl	debug_printf
+ 514              	.LVL31:
+ 172:Core/Src/main.c ****   }
+ 515              		.loc 1 172 5 view .LVU119
+ 516 0042 FFF7FEFF 		bl	Error_Handler
+ 517              	.LVL32:
+ 518              	.L35:
+ 182:Core/Src/main.c ****       /* Stop TIM1 */
+ 519              		.loc 1 182 7 view .LVU120
+ 520 0046 2E48     		ldr	r0, .L40+24
+ 521 0048 FFF7FEFF 		bl	debug_printf
+ 522              	.LVL33:
+ 184:Core/Src/main.c **** 
+ 523              		.loc 1 184 7 view .LVU121
+ 524 004c 2748     		ldr	r0, .L40+4
+ 525 004e FFF7FEFF 		bl	HAL_TIM_Base_Stop_IT
+ 526              	.LVL34:
+ 188:Core/Src/main.c ****       /* Enable Power Control clock */
+ 527              		.loc 1 188 7 view .LVU122
+ 528 0052 FFF7FEFF 		bl	HAL_SuspendTick
+ 529              	.LVL35:
+ 190:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 530              		.loc 1 190 7 view .LVU123
+ 531              	.LBB6:
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 20
 
 
- 516              		.loc 1 160 5 view .LVU118
- 517 0082 144B     		ldr	r3, .L36+28
- 518 0084 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 519 0086 012B     		cmp	r3, #1
- 520 0088 04D0     		beq	.L30
- 521 008a 022B     		cmp	r3, #2
- 522 008c DBD0     		beq	.L31
- 523 008e 002B     		cmp	r3, #0
- 524 0090 F7D1     		bne	.L33
- 525 0092 DEE7     		b	.L32
- 526              	.L30:
- 179:Core/Src/main.c ****       result = do_work(work);
- 527              		.loc 1 179 7 view .LVU119
- 528 0094 134C     		ldr	r4, .L36+44
- 529 0096 2168     		ldr	r1, [r4]
- 530 0098 1348     		ldr	r0, .L36+48
- 531 009a FFF7FEFF 		bl	debug_printf
- 532              	.LVL38:
- 180:Core/Src/main.c ****       if(result == 0) // right
- 533              		.loc 1 180 7 view .LVU120
- 180:Core/Src/main.c ****       if(result == 0) // right
- 534              		.loc 1 180 16 is_stmt 0 view .LVU121
- 535 009e 2068     		ldr	r0, [r4]
- 536 00a0 FFF7FEFF 		bl	do_work
- 537              	.LVL39:
- 181:Core/Src/main.c ****       {
- 538              		.loc 1 181 7 is_stmt 1 view .LVU122
- 181:Core/Src/main.c ****       {
- 539              		.loc 1 181 9 is_stmt 0 view .LVU123
- 540 00a4 0028     		cmp	r0, #0
- 541 00a6 ECD1     		bne	.L33
- 183:Core/Src/main.c ****         HAL_TIM_Base_Start_IT(&htim1);
- 542              		.loc 1 183 9 is_stmt 1 view .LVU124
- 183:Core/Src/main.c ****         HAL_TIM_Base_Start_IT(&htim1);
- 543              		.loc 1 183 15 is_stmt 0 view .LVU125
- 544 00a8 0A4B     		ldr	r3, .L36+28
- 545 00aa 0022     		movs	r2, #0
- 546 00ac 1A70     		strb	r2, [r3]
- 184:Core/Src/main.c ****       }
- 547              		.loc 1 184 9 is_stmt 1 view .LVU126
- 548 00ae 0348     		ldr	r0, .L36+4
- 549              	.LVL40:
- 184:Core/Src/main.c ****       }
- 550              		.loc 1 184 9 is_stmt 0 view .LVU127
- 551 00b0 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
- 552              	.LVL41:
- 553 00b4 E5E7     		b	.L33
- 554              	.L37:
- 555 00b6 00BF     		.align	2
- 556              	.L36:
- 557 00b8 00000000 		.word	.LC4
- 558 00bc 00000000 		.word	htim1
- 559 00c0 18000000 		.word	.LC5
- 560 00c4 00000000 		.word	.LANCHOR1
- 561 00c8 00000000 		.word	huart1
- 562 00cc 30000000 		.word	.LC6
- 563 00d0 44000000 		.word	.LC7
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 20
+ 190:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 532              		.loc 1 190 7 view .LVU124
+ 190:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 533              		.loc 1 190 7 view .LVU125
+ 534 0056 2B4B     		ldr	r3, .L40+28
+ 535 0058 DA69     		ldr	r2, [r3, #28]
+ 536 005a 42F08052 		orr	r2, r2, #268435456
+ 537 005e DA61     		str	r2, [r3, #28]
+ 190:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 538              		.loc 1 190 7 view .LVU126
+ 539 0060 DB69     		ldr	r3, [r3, #28]
+ 540 0062 03F08053 		and	r3, r3, #268435456
+ 541 0066 0093     		str	r3, [sp]
+ 190:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 542              		.loc 1 190 7 view .LVU127
+ 543 0068 009B     		ldr	r3, [sp]
+ 544              	.LBE6:
+ 190:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 545              		.loc 1 190 7 view .LVU128
+ 192:Core/Src/main.c ****       /* Resume Tick interrupt if disabled prior to sleep mode entry*/
+ 546              		.loc 1 192 7 view .LVU129
+ 547 006a 0121     		movs	r1, #1
+ 548 006c 0020     		movs	r0, #0
+ 549 006e FFF7FEFF 		bl	HAL_PWR_EnterSLEEPMode
+ 550              	.LVL36:
+ 194:Core/Src/main.c ****       debug_printf("[PAUSE] Wake up from sleep mode\r\n");
+ 551              		.loc 1 194 7 view .LVU130
+ 552 0072 FFF7FEFF 		bl	HAL_ResumeTick
+ 553              	.LVL37:
+ 195:Core/Src/main.c ****       break;
+ 554              		.loc 1 195 7 view .LVU131
+ 555 0076 2448     		ldr	r0, .L40+32
+ 556 0078 FFF7FEFF 		bl	debug_printf
+ 557              	.LVL38:
+ 196:Core/Src/main.c ****     case STATE_IDLE:
+ 558              		.loc 1 196 7 view .LVU132
+ 559              	.L37:
+ 174:Core/Src/main.c ****   {
+ 560              		.loc 1 174 3 view .LVU133
+ 179:Core/Src/main.c ****     {
+ 561              		.loc 1 179 5 view .LVU134
+ 562 007c 234B     		ldr	r3, .L40+36
+ 563 007e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 564 0080 012B     		cmp	r3, #1
+ 565 0082 1CD0     		beq	.L34
+ 566 0084 022B     		cmp	r3, #2
+ 567 0086 DED0     		beq	.L35
+ 568 0088 002B     		cmp	r3, #0
+ 569 008a F7D1     		bne	.L37
+ 198:Core/Src/main.c ****       /*Suspend Tick increment to prevent wakeup by Systick interrupt. 
+ 570              		.loc 1 198 7 view .LVU135
+ 571 008c 2048     		ldr	r0, .L40+40
+ 572 008e FFF7FEFF 		bl	debug_printf
+ 573              	.LVL39:
+ 201:Core/Src/main.c ****       /* Enable Power Control clock */
+ 574              		.loc 1 201 7 view .LVU136
+ 575 0092 FFF7FEFF 		bl	HAL_SuspendTick
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 21
 
 
- 564 00d4 00000000 		.word	.LANCHOR0
- 565 00d8 58000000 		.word	.LC8
- 566 00dc 00100240 		.word	1073876992
- 567 00e0 74000000 		.word	.LC9
- 568 00e4 00000000 		.word	.LANCHOR2
- 569 00e8 98000000 		.word	.LC10
- 570              		.cfi_endproc
- 571              	.LFE68:
- 573              		.global	work
- 574              		.global	state
- 575              		.global	cmd
- 576              		.section	.bss.cmd,"aw",%nobits
- 577              		.set	.LANCHOR1,. + 0
- 580              	cmd:
- 581 0000 00       		.space	1
- 582              		.section	.bss.state,"aw",%nobits
- 583              		.set	.LANCHOR0,. + 0
- 586              	state:
- 587 0000 00       		.space	1
- 588              		.section	.data.work,"aw"
- 589              		.align	2
- 590              		.set	.LANCHOR2,. + 0
- 593              	work:
- 594 0000 E8030000 		.word	1000
- 595              		.text
- 596              	.Letext0:
- 597              		.file 3 "c:\\users\\henry\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\machin
- 598              		.file 4 "c:\\users\\henry\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\sys\\_
- 599              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
- 600              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
- 601              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h"
- 602              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h"
- 603              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
- 604              		.file 10 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h"
- 605              		.file 11 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h"
- 606              		.file 12 "Core/Inc/tim.h"
- 607              		.file 13 "Core/Inc/usart.h"
- 608              		.file 14 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
- 609              		.file 15 "Core/Inc/gpio.h"
- 610              		.file 16 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h"
- 611              		.file 17 "<built-in>"
-ARM GAS  C:\Users\henry\AppData\Local\Temp\ccLStXmd.s 			page 21
+ 576              	.LVL40:
+ 203:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 577              		.loc 1 203 7 view .LVU137
+ 578              	.LBB7:
+ 203:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 579              		.loc 1 203 7 view .LVU138
+ 203:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 580              		.loc 1 203 7 view .LVU139
+ 581 0096 1B4B     		ldr	r3, .L40+28
+ 582 0098 DA69     		ldr	r2, [r3, #28]
+ 583 009a 42F08052 		orr	r2, r2, #268435456
+ 584 009e DA61     		str	r2, [r3, #28]
+ 203:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 585              		.loc 1 203 7 view .LVU140
+ 586 00a0 DB69     		ldr	r3, [r3, #28]
+ 587 00a2 03F08053 		and	r3, r3, #268435456
+ 588 00a6 0193     		str	r3, [sp, #4]
+ 203:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 589              		.loc 1 203 7 view .LVU141
+ 590 00a8 019B     		ldr	r3, [sp, #4]
+ 591              	.LBE7:
+ 203:Core/Src/main.c ****       /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+ 592              		.loc 1 203 7 view .LVU142
+ 205:Core/Src/main.c ****       /* Resume Tick interrupt if disabled prior to sleep mode entry*/
+ 593              		.loc 1 205 7 view .LVU143
+ 594 00aa 0121     		movs	r1, #1
+ 595 00ac 0020     		movs	r0, #0
+ 596 00ae FFF7FEFF 		bl	HAL_PWR_EnterSLEEPMode
+ 597              	.LVL41:
+ 207:Core/Src/main.c ****       debug_printf("[IDLE] Wake up from sleep mode\r\n");
+ 598              		.loc 1 207 7 view .LVU144
+ 599 00b2 FFF7FEFF 		bl	HAL_ResumeTick
+ 600              	.LVL42:
+ 208:Core/Src/main.c ****       break;
+ 601              		.loc 1 208 7 view .LVU145
+ 602 00b6 1748     		ldr	r0, .L40+44
+ 603 00b8 FFF7FEFF 		bl	debug_printf
+ 604              	.LVL43:
+ 209:Core/Src/main.c ****     case STATE_WORK:
+ 605              		.loc 1 209 7 view .LVU146
+ 606 00bc DEE7     		b	.L37
+ 607              	.L34:
+ 211:Core/Src/main.c ****       result = do_work(work);
+ 608              		.loc 1 211 7 view .LVU147
+ 609 00be 164C     		ldr	r4, .L40+48
+ 610 00c0 2168     		ldr	r1, [r4]
+ 611 00c2 1648     		ldr	r0, .L40+52
+ 612 00c4 FFF7FEFF 		bl	debug_printf
+ 613              	.LVL44:
+ 212:Core/Src/main.c ****       if(result == 0 && state == STATE_WORK) // right
+ 614              		.loc 1 212 7 view .LVU148
+ 212:Core/Src/main.c ****       if(result == 0 && state == STATE_WORK) // right
+ 615              		.loc 1 212 16 is_stmt 0 view .LVU149
+ 616 00c8 2068     		ldr	r0, [r4]
+ 617 00ca FFF7FEFF 		bl	do_work
+ 618              	.LVL45:
+ 213:Core/Src/main.c ****       {
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 22
+
+
+ 619              		.loc 1 213 7 is_stmt 1 view .LVU150
+ 213:Core/Src/main.c ****       {
+ 620              		.loc 1 213 9 is_stmt 0 view .LVU151
+ 621 00ce 0028     		cmp	r0, #0
+ 622 00d0 D4D1     		bne	.L37
+ 213:Core/Src/main.c ****       {
+ 623              		.loc 1 213 31 discriminator 1 view .LVU152
+ 624 00d2 0E4B     		ldr	r3, .L40+36
+ 625 00d4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 213:Core/Src/main.c ****       {
+ 626              		.loc 1 213 22 discriminator 1 view .LVU153
+ 627 00d6 012B     		cmp	r3, #1
+ 628 00d8 D0D1     		bne	.L37
+ 215:Core/Src/main.c ****         HAL_TIM_Base_Start_IT(&htim1);
+ 629              		.loc 1 215 9 is_stmt 1 view .LVU154
+ 215:Core/Src/main.c ****         HAL_TIM_Base_Start_IT(&htim1);
+ 630              		.loc 1 215 15 is_stmt 0 view .LVU155
+ 631 00da 0C4B     		ldr	r3, .L40+36
+ 632 00dc 0022     		movs	r2, #0
+ 633 00de 1A70     		strb	r2, [r3]
+ 216:Core/Src/main.c ****       }
+ 634              		.loc 1 216 9 is_stmt 1 view .LVU156
+ 635 00e0 0248     		ldr	r0, .L40+4
+ 636              	.LVL46:
+ 216:Core/Src/main.c ****       }
+ 637              		.loc 1 216 9 is_stmt 0 view .LVU157
+ 638 00e2 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 639              	.LVL47:
+ 640 00e6 C9E7     		b	.L37
+ 641              	.L41:
+ 642              		.align	2
+ 643              	.L40:
+ 644 00e8 00000000 		.word	.LC4
+ 645 00ec 00000000 		.word	htim1
+ 646 00f0 18000000 		.word	.LC5
+ 647 00f4 00000000 		.word	.LANCHOR1
+ 648 00f8 00000000 		.word	huart1
+ 649 00fc 30000000 		.word	.LC6
+ 650 0100 44000000 		.word	.LC7
+ 651 0104 00100240 		.word	1073876992
+ 652 0108 5C000000 		.word	.LC8
+ 653 010c 00000000 		.word	.LANCHOR0
+ 654 0110 80000000 		.word	.LC9
+ 655 0114 9C000000 		.word	.LC10
+ 656 0118 00000000 		.word	.LANCHOR2
+ 657 011c C0000000 		.word	.LC11
+ 658              		.cfi_endproc
+ 659              	.LFE68:
+ 661              		.global	work
+ 662              		.global	state
+ 663              		.global	cmd
+ 664              		.section	.bss.cmd,"aw",%nobits
+ 665              		.set	.LANCHOR1,. + 0
+ 668              	cmd:
+ 669 0000 00       		.space	1
+ 670              		.section	.bss.state,"aw",%nobits
+ 671              		.set	.LANCHOR0,. + 0
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 23
+
+
+ 674              	state:
+ 675 0000 00       		.space	1
+ 676              		.section	.data.work,"aw"
+ 677              		.align	2
+ 678              		.set	.LANCHOR2,. + 0
+ 681              	work:
+ 682 0000 E8030000 		.word	1000
+ 683              		.text
+ 684              	.Letext0:
+ 685              		.file 3 "c:\\users\\henry\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\machin
+ 686              		.file 4 "c:\\users\\henry\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\sys\\_
+ 687              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 688              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 689              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h"
+ 690              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h"
+ 691              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 692              		.file 10 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h"
+ 693              		.file 11 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h"
+ 694              		.file 12 "Core/Inc/tim.h"
+ 695              		.file 13 "Core/Inc/usart.h"
+ 696              		.file 14 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
+ 697              		.file 15 "Core/Inc/gpio.h"
+ 698              		.file 16 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h"
+ 699              		.file 17 "<built-in>"
+ARM GAS  C:\Users\henry\AppData\Local\Temp\ccV6iocX.s 			page 24
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:18     .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:24     .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:54     .text.HAL_TIM_PeriodElapsedCallback:00000014 $d
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:60     .rodata.HAL_UART_RxCpltCallback.str1.4:00000000 $d
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:64     .text.HAL_UART_RxCpltCallback:00000000 $t
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:70     .text.HAL_UART_RxCpltCallback:00000000 HAL_UART_RxCpltCallback
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:141    .text.HAL_UART_RxCpltCallback:00000044 $d
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:151    .rodata.do_work.str1.4:00000000 $d
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:158    .text.do_work:00000000 $t
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:164    .text.do_work:00000000 do_work
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:202    .text.do_work:0000001c $d
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:208    .rodata.Error_Handler.str1.4:00000000 $d
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:212    .text.Error_Handler:00000000 $t
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:218    .text.Error_Handler:00000000 Error_Handler
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:257    .text.Error_Handler:0000000c $d
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:262    .text.SystemClock_Config:00000000 $t
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:268    .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:373    .rodata.main.str1.4:00000000 $d
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:395    .text.main:00000000 $t
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:401    .text.main:00000000 main
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:557    .text.main:000000b8 $d
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:593    .data.work:00000000 work
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:586    .bss.state:00000000 state
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:580    .bss.cmd:00000000 cmd
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:581    .bss.cmd:00000000 $d
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:587    .bss.state:00000000 $d
-C:\Users\henry\AppData\Local\Temp\ccLStXmd.s:589    .data.work:00000000 $d
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:18     .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:24     .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:61     .text.HAL_TIM_PeriodElapsedCallback:0000001c $d
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:67     .rodata.HAL_UART_RxCpltCallback.str1.4:00000000 $d
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:71     .text.HAL_UART_RxCpltCallback:00000000 $t
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:77     .text.HAL_UART_RxCpltCallback:00000000 HAL_UART_RxCpltCallback
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:188    .text.HAL_UART_RxCpltCallback:00000070 $d
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:199    .rodata.do_work.str1.4:00000000 $d
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:206    .text.do_work:00000000 $t
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:212    .text.do_work:00000000 do_work
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:250    .text.do_work:0000001c $d
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:256    .rodata.Error_Handler.str1.4:00000000 $d
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:260    .text.Error_Handler:00000000 $t
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:266    .text.Error_Handler:00000000 Error_Handler
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:305    .text.Error_Handler:0000000c $d
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:310    .text.SystemClock_Config:00000000 $t
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:316    .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:421    .rodata.main.str1.4:00000000 $d
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:446    .text.main:00000000 $t
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:452    .text.main:00000000 main
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:644    .text.main:000000e8 $d
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:681    .data.work:00000000 work
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:674    .bss.state:00000000 state
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:668    .bss.cmd:00000000 cmd
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:669    .bss.cmd:00000000 $d
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:675    .bss.state:00000000 $d
+C:\Users\henry\AppData\Local\Temp\ccV6iocX.s:677    .data.work:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_UART_Receive_IT
@@ -1229,6 +1392,7 @@ MX_GPIO_Init
 MX_USART1_UART_Init
 MX_TIM1_Init
 HAL_TIM_Base_Start_IT
+HAL_TIM_Base_Stop_IT
 HAL_SuspendTick
 HAL_PWR_EnterSLEEPMode
 HAL_ResumeTick

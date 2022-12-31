@@ -33,7 +33,7 @@ enum system_state
 {
   STATE_IDLE = 0,
   STATE_WORK,
-  STATE_STOP
+  STATE_PAUSE
 };
 typedef enum system_state system_state_t;
 /* USER CODE END PTD */
@@ -72,7 +72,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if (htim->Instance == TIM1)
   {
-    state = STATE_WORK;
+    if(state == STATE_IDLE)
+    {
+      state = STATE_WORK;
+    }
   }
 }
 /**
@@ -91,6 +94,22 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
       // set run period
       htim1.Instance->ARR = (uint32_t)(cmd - '0') * 1000 - 1; // cmd S
       debug_printf("Set period to %d ms\r\n", htim1.Instance->ARR + 1);
+    }
+    else if (cmd == 's')
+    {
+      // start work
+      if(state == STATE_PAUSE)
+      {
+        state = STATE_WORK;
+      }
+    }
+    else if (cmd == 'p')
+    {
+      // stop work
+      if(state == STATE_WORK || state == STATE_IDLE)
+      {
+        state = STATE_PAUSE;
+      }
     }
   }
   HAL_UART_Receive_IT(&huart1, (uint8_t *)&cmd, 1);
@@ -159,9 +178,22 @@ int main(void)
     /* USER CODE BEGIN 3 */
     switch (state)
     {
-    case STATE_STOP:
-      debug_printf("[STOP] Stop work\r\n");
-      state = STATE_IDLE;
+    case STATE_PAUSE:
+      debug_printf("[PAUSE] Pause work\r\n");
+      /* Stop TIM1 */
+      HAL_TIM_Base_Stop_IT(&htim1);
+
+      /*Suspend Tick increment to prevent wakeup by Systick interrupt. 
+      Otherwise the Systick interrupt will wake up the device within 1ms (HAL time base)*/
+      HAL_SuspendTick();
+      /* Enable Power Control clock */
+      __HAL_RCC_PWR_CLK_ENABLE();
+      /* Enter Sleep Mode , wake up is done once User push-button is pressed */
+      HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+      /* Resume Tick interrupt if disabled prior to sleep mode entry*/
+      HAL_ResumeTick();
+      debug_printf("[PAUSE] Wake up from sleep mode\r\n");
+      break;
     case STATE_IDLE:
       debug_printf("[IDLE] Enter sleep mode\r\n");
       /*Suspend Tick increment to prevent wakeup by Systick interrupt. 
@@ -178,7 +210,7 @@ int main(void)
     case STATE_WORK:
       debug_printf("[WORK] Do work for %d ms\r\n", work);
       result = do_work(work);
-      if(result == 0) // right
+      if(result == 0 && state == STATE_WORK) // right
       {
         state = STATE_IDLE;
         HAL_TIM_Base_Start_IT(&htim1);
